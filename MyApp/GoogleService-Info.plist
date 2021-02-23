@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>636302951203-spenbo147g10jk9pkgcjij20l819vlfe.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.636302951203-spenbo147g10jk9pkgcjij20l819vlfe</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAP70qYWKnkEwQt5TUYBo5UVAWMY_2cCBw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>636302951203</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>pitaya.MyApp</string>
+	<key>PROJECT_ID</key>
+	<string>myapp-2eebd</string>
+	<key>STORAGE_BUCKET</key>
+	<string>myapp-2eebd.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:636302951203:ios:0d1af16578cf5a02c50296</string>
+</dict>
+</plist>
