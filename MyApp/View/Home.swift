@@ -27,7 +27,7 @@ struct Home: View {
 }
 
 var tabItems = ["home", "recommend", "notification", "profile"]
-var tabTitles = ["home": "首頁", "notification": "通知", "recommend": "推薦", "profile": "個人資料"]
+var tabTitles = ["home": "首頁", "notification": "通知", "recommend": "推薦", "profile": "我的帳戶"]
 
 struct CustomTabBar: View {
     
@@ -37,20 +37,27 @@ struct CustomTabBar: View {
         
         ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
             
-            TabView(selection: $selectedTab) {
-                
-                TabView_home()
-                    .tag(tabItems[0])
-                TabView_recommend()
-                    .tag(tabItems[1])
-                TabView_notification()
-                    .tag(tabItems[2])
-                TabView_profile()
-                    .tag(tabItems[3])
+            NavigationView {
+                TabView(selection: $selectedTab) {
+                    
+                    TabView_home()
+                        .tag(tabItems[0])
+                        .navigationBarHidden(true)
+                    TabView_recommend()
+                        .tag(tabItems[1])
+                        .navigationBarHidden(true)
+                    TabView_notification()
+                        .tag(tabItems[2])
+                        .navigationBarHidden(true)
+                    TabView_profile()
+                        .tag(tabItems[3])
+                        .navigationBarHidden(false)
+                    
+                }
+                .ignoresSafeArea(.all, edges: .bottom)
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 
             }
-            .ignoresSafeArea(.all, edges: .bottom)
-            //.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             
             HStack(spacing: 0) {
                 

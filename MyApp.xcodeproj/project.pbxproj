@@ -14,12 +14,10 @@
 		A96BA08125E3392D00A8EC58 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = A96BA08025E3392D00A8EC58 /* Lottie */; };
 		A96BA08425E3394700A8EC58 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BA08325E3394700A8EC58 /* LottieView.swift */; };
 		A96BA10B25E3440F00A8EC58 /* login.json in Resources */ = {isa = PBXBuildFile; fileRef = A96BA10A25E3440F00A8EC58 /* login.json */; };
-		A96BA11025E34DEA00A8EC58 /* LabelledDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BA10F25E34DEA00A8EC58 /* LabelledDivider.swift */; };
 		A96BA11425E3C63D00A8EC58 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A96BA11325E3C63D00A8EC58 /* GoogleService-Info.plist */; };
 		A96BA11825E3C76300A8EC58 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A96BA11725E3C76300A8EC58 /* FirebaseAuth */; };
 		A96BA11A25E3C76300A8EC58 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A96BA11925E3C76300A8EC58 /* FirebaseFirestore */; };
 		A96BA11C25E3C76300A8EC58 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A96BA11B25E3C76300A8EC58 /* FirebaseStorage */; };
-		A96BA11F25E3C93400A8EC58 /* CustomCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BA11E25E3C93400A8EC58 /* CustomCorner.swift */; };
 		A96BA12225E3CC2900A8EC58 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BA12125E3CC2900A8EC58 /* Login.swift */; };
 		A96BA12525E3CC3F00A8EC58 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BA12425E3CC3F00A8EC58 /* LoginViewModel.swift */; };
 		A96BA13225E3F92700A8EC58 /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BA13125E3F92700A8EC58 /* LoadingScreen.swift */; };
@@ -53,9 +51,7 @@
 		A96BA07825E3366500A8EC58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A96BA08325E3394700A8EC58 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		A96BA10A25E3440F00A8EC58 /* login.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = login.json; sourceTree = "<group>"; };
-		A96BA10F25E34DEA00A8EC58 /* LabelledDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelledDivider.swift; sourceTree = "<group>"; };
 		A96BA11325E3C63D00A8EC58 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		A96BA11E25E3C93400A8EC58 /* CustomCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCorner.swift; sourceTree = "<group>"; };
 		A96BA12125E3CC2900A8EC58 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		A96BA12425E3CC3F00A8EC58 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		A96BA13125E3F92700A8EC58 /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
@@ -173,8 +169,6 @@
 				A96BA16725E5651600A8EC58 /* TabView_profile.swift */,
 				A9C5206725E6AE3A00AEE181 /* MassageBox.swift */,
 				A9C5207425E6D26700AEE181 /* ChatView.swift */,
-				A96BA10F25E34DEA00A8EC58 /* LabelledDivider.swift */,
-				A96BA11E25E3C93400A8EC58 /* CustomCorner.swift */,
 				A96BA13125E3F92700A8EC58 /* LoadingScreen.swift */,
 				A96BA13725E4098500A8EC58 /* CustomNumberPad.swift */,
 			);
@@ -289,14 +283,12 @@
 				A96BA12525E3CC3F00A8EC58 /* LoginViewModel.swift in Sources */,
 				A96BA12225E3CC2900A8EC58 /* Login.swift in Sources */,
 				A96BA15B25E487F100A8EC58 /* NewMember.swift in Sources */,
-				A96BA11025E34DEA00A8EC58 /* LabelledDivider.swift in Sources */,
 				A96BA07225E3366300A8EC58 /* ContentView.swift in Sources */,
 				A96BA14B25E44B2800A8EC58 /* Home.swift in Sources */,
 				A96BA07025E3366300A8EC58 /* MyAppApp.swift in Sources */,
 				A9C5206125E6ACC100AEE181 /* TabView_recommend.swift in Sources */,
 				A96BA13525E4049200A8EC58 /* Countries.swift in Sources */,
 				A9C5207025E6C84D00AEE181 /* Indicator.swift in Sources */,
-				A96BA11F25E3C93400A8EC58 /* CustomCorner.swift in Sources */,
 				A96BA13225E3F92700A8EC58 /* LoadingScreen.swift in Sources */,
 				A9C5205725E69B5900AEE181 /* ChatObservable.swift in Sources */,
 				A96BA16325E5640F00A8EC58 /* TabView_home.swift in Sources */,
