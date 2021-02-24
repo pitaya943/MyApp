@@ -44,6 +44,10 @@ class LoginViewModel: ObservableObject {
     @AppStorage("uid") var uid = ""
     @AppStorage("user") var user = ""
     @AppStorage("phone") var phone = ""
+    @AppStorage("pic") var pic = ""
+    
+    // Storage in firebase
+    let storage = Storage.storage().reference()
     
     func getCountryCode() -> String {
         
@@ -68,6 +72,7 @@ class LoginViewModel: ObservableObject {
                 let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
                 // Getting user name for userdefault from firebase
                 self.user = document.get("name") as! String
+                self.pic = document.get("pic") as! String
                 
                 print("Logging user data: \(dataDescription)")
                 
@@ -75,7 +80,7 @@ class LoginViewModel: ObservableObject {
             }
             else {
                 do {
-                    try userRef.setData(from: User(uid: self.uid, name: "", phoneNumber: self.phone))
+                    try userRef.setData(from: User(id: self.uid, name: "", phoneNumber: self.phone, pic: "https://www.irishtimes.com/polopoly_fs/1.3384848.1518095548!/image/image.jpg_gen/derivatives/ratio_1x1_w1200/image.jpg"))
                     print("New user logged!!!")
                     
                     // If user not exist then toggle newMember
@@ -136,6 +141,7 @@ class LoginViewModel: ObservableObject {
             print("newMember = \(String(self.newMember))")
             print("uid = \(self.uid)")
             print("phone = \(self.phone)")
+            print("pic = \(self.pic)")
             
         }
     }

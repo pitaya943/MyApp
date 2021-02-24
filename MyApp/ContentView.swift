@@ -17,12 +17,7 @@ struct ContentView: View {
                 Home()
             }
             else {
-                NavigationView {
-                    Login()
-                        .navigationBarHidden(true)
-                        .navigationBarBackButtonHidden(true)
-                        .ignoresSafeArea(.all, edges: .bottom)
-                }
+                Login()
             }
         }
         

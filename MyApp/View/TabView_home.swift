@@ -15,6 +15,7 @@ struct TabView_home: View {
     @AppStorage("newMember") var newMember = false
     @AppStorage("newMemberPage") var page = 1
     @AppStorage("log_Status") var status = false
+    @AppStorage("pic") var pic = ""
 
     var body: some View {
         
@@ -26,6 +27,7 @@ struct TabView_home: View {
             Text("log_Status = \(String(status))")
             Text("uid = \(uid)")
             Text("phone = \(phone)")
+            Text("pic = \(pic)")
         }
         
     }

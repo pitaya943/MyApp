@@ -38,6 +38,10 @@
 		A9C5206125E6ACC100AEE181 /* TabView_recommend.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C5206025E6ACC100AEE181 /* TabView_recommend.swift */; };
 		A9C5206425E6ACFA00AEE181 /* TabView_notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C5206325E6ACFA00AEE181 /* TabView_notification.swift */; };
 		A9C5206825E6AE3A00AEE181 /* MassageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C5206725E6AE3A00AEE181 /* MassageBox.swift */; };
+		A9C5206D25E6C06E00AEE181 /* GetAllOwners.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C5206C25E6C06E00AEE181 /* GetAllOwners.swift */; };
+		A9C5207025E6C84D00AEE181 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C5206F25E6C84D00AEE181 /* Indicator.swift */; };
+		A9C5207525E6D26700AEE181 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C5207425E6D26700AEE181 /* ChatView.swift */; };
+		A9C5207925E6D31600AEE181 /* Msg.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C5207825E6D31600AEE181 /* Msg.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +72,10 @@
 		A9C5206025E6ACC100AEE181 /* TabView_recommend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView_recommend.swift; sourceTree = "<group>"; };
 		A9C5206325E6ACFA00AEE181 /* TabView_notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView_notification.swift; sourceTree = "<group>"; };
 		A9C5206725E6AE3A00AEE181 /* MassageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MassageBox.swift; sourceTree = "<group>"; };
+		A9C5206C25E6C06E00AEE181 /* GetAllOwners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllOwners.swift; sourceTree = "<group>"; };
+		A9C5206F25E6C84D00AEE181 /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
+		A9C5207425E6D26700AEE181 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		A9C5207825E6D31600AEE181 /* Msg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Msg.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +145,7 @@
 				A96BA13425E4049200A8EC58 /* Countries.swift */,
 				A96BA15625E46B1B00A8EC58 /* User.swift */,
 				A9C5205925E69BCB00AEE181 /* Recent.swift */,
+				A9C5207825E6D31600AEE181 /* Msg.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -146,6 +155,7 @@
 			children = (
 				A96BA12425E3CC3F00A8EC58 /* LoginViewModel.swift */,
 				A9C5205625E69B5900AEE181 /* ChatObservable.swift */,
+				A9C5206C25E6C06E00AEE181 /* GetAllOwners.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -162,6 +172,7 @@
 				A9C5206325E6ACFA00AEE181 /* TabView_notification.swift */,
 				A96BA16725E5651600A8EC58 /* TabView_profile.swift */,
 				A9C5206725E6AE3A00AEE181 /* MassageBox.swift */,
+				A9C5207425E6D26700AEE181 /* ChatView.swift */,
 				A96BA10F25E34DEA00A8EC58 /* LabelledDivider.swift */,
 				A96BA11E25E3C93400A8EC58 /* CustomCorner.swift */,
 				A96BA13125E3F92700A8EC58 /* LoadingScreen.swift */,
@@ -173,6 +184,7 @@
 		A96BA10E25E34DD100A8EC58 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				A9C5206F25E6C84D00AEE181 /* Indicator.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -269,8 +281,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A96BA15725E46B1B00A8EC58 /* User.swift in Sources */,
+				A9C5206D25E6C06E00AEE181 /* GetAllOwners.swift in Sources */,
 				A96BA13B25E41A5200A8EC58 /* Verification.swift in Sources */,
 				A96BA16825E5651600A8EC58 /* TabView_profile.swift in Sources */,
+				A9C5207525E6D26700AEE181 /* ChatView.swift in Sources */,
 				A9C5206825E6AE3A00AEE181 /* MassageBox.swift in Sources */,
 				A96BA12525E3CC3F00A8EC58 /* LoginViewModel.swift in Sources */,
 				A96BA12225E3CC2900A8EC58 /* Login.swift in Sources */,
@@ -281,6 +295,7 @@
 				A96BA07025E3366300A8EC58 /* MyAppApp.swift in Sources */,
 				A9C5206125E6ACC100AEE181 /* TabView_recommend.swift in Sources */,
 				A96BA13525E4049200A8EC58 /* Countries.swift in Sources */,
+				A9C5207025E6C84D00AEE181 /* Indicator.swift in Sources */,
 				A96BA11F25E3C93400A8EC58 /* CustomCorner.swift in Sources */,
 				A96BA13225E3F92700A8EC58 /* LoadingScreen.swift in Sources */,
 				A9C5205725E69B5900AEE181 /* ChatObservable.swift in Sources */,
@@ -289,6 +304,7 @@
 				A9C5206425E6ACFA00AEE181 /* TabView_notification.swift in Sources */,
 				A9C5205A25E69BCB00AEE181 /* Recent.swift in Sources */,
 				A96BA13825E4098600A8EC58 /* CustomNumberPad.swift in Sources */,
+				A9C5207925E6D31600AEE181 /* Msg.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

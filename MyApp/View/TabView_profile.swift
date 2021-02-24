@@ -22,11 +22,9 @@ struct TabView_profile: View {
         NavigationView {
             
             VStack {
-                NavigationLink(destination: MassageBox().environmentObject(ChatObservable())){
-                        Text("MessageBox")
-                    }
+                NavigationLink(destination: MassageBox().environmentObject(ChatObservable())){ Text("MessageBox") }
             }
-            .navigationBarTitle("訊息箱", displayMode: .inline)
+            .navigationBarTitle("個人資料設定", displayMode: .inline)
 
         }
         

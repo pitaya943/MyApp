@@ -49,8 +49,8 @@ struct CustomTabBar: View {
                     .tag(tabItems[3])
                 
             }
+            .ignoresSafeArea(.all, edges: .bottom)
             //.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            //.ignoresSafeArea(.all, edges: .bottom)
             
             HStack(spacing: 0) {
                 

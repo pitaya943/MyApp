@@ -7,10 +7,19 @@
 
 import Foundation
 
-struct User: Codable {
-
-    let uid: String
-    let name: String?
-    let phoneNumber: String?
+struct User : Identifiable, Codable {
     
+    var id : String
+    var name : String
+    var phoneNumber : String
+    var pic : String
+}
+
+struct Owner : Identifiable, Codable {
+    
+    var id : String
+    var name : String
+    var phoneNumber : String
+    var pic : String
+    var about: String
 }
