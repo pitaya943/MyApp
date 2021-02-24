@@ -13,28 +13,41 @@
 //  @AppStorage("phone")
 
 import SwiftUI
-
-var userdefaultKeys = ["newMemberPage", "uid", "user", "phone"]
+import Firebase
 
 struct TabView_profile: View {
+        
+    var body: some View {
+        
+        NavigationView {
+            
+            VStack {
+                NavigationLink(destination: MassageBox().environmentObject(ChatObservable())){
+                        Text("MessageBox")
+                    }
+            }
+            .navigationBarTitle("訊息箱", displayMode: .inline)
+
+        }
+        
+    }
+    
+}
+
+struct logoutButton: View {
     
     @AppStorage("log_Status") var status = false
     
     var body: some View {
         
-        VStack(spacing: 15) {
-            
-            Button(action: {
-                withAnimation(.easeInOut) {
-                    status.toggle()
-                    resetUserdefault()
-                }
-            }, label: {
-                Text("登出")
-            })
-            
-            
-        }
+        Button(action: {
+            withAnimation(.easeInOut) {
+                status.toggle()
+                resetUserdefault()
+            }
+        }, label: {
+            Text("登出")
+        })
     }
     
     func resetUserdefault() {
@@ -44,8 +57,10 @@ struct TabView_profile: View {
     }
 }
 
+
+
 struct TabView_profile_Previews: PreviewProvider {
     static var previews: some View {
-        TabView_profile()
+        ContentView()
     }
 }

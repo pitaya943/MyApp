@@ -41,16 +41,16 @@ struct CustomTabBar: View {
                 
                 TabView_home()
                     .tag(tabItems[0])
-                Text("2")
+                TabView_recommend()
                     .tag(tabItems[1])
-                Text("3")
+                TabView_notification()
                     .tag(tabItems[2])
                 TabView_profile()
                     .tag(tabItems[3])
                 
             }
-            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            .ignoresSafeArea(.all, edges: .bottom)
+            //.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+            //.ignoresSafeArea(.all, edges: .bottom)
             
             HStack(spacing: 0) {
                 

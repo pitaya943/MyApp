@@ -27,7 +27,7 @@ struct TabView_home: View {
             Text("uid = \(uid)")
             Text("phone = \(phone)")
         }
-
+        
     }
 }
 
