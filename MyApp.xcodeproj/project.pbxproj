@@ -26,7 +26,7 @@
 		A96BA13B25E41A5200A8EC58 /* Verification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BA13A25E41A5200A8EC58 /* Verification.swift */; };
 		A96BA14B25E44B2800A8EC58 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BA14A25E44B2800A8EC58 /* Home.swift */; };
 		A96BA15425E4624C00A8EC58 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = A96BA15325E4624C00A8EC58 /* FirebaseFirestoreSwift-Beta */; };
-		A96BA15725E46B1B00A8EC58 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BA15625E46B1B00A8EC58 /* User.swift */; };
+		A96BA15725E46B1B00A8EC58 /* UserAndOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BA15625E46B1B00A8EC58 /* UserAndOwner.swift */; };
 		A96BA15B25E487F100A8EC58 /* NewMember.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BA15A25E487F100A8EC58 /* NewMember.swift */; };
 		A96BA16325E5640F00A8EC58 /* TabView_home.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BA16225E5640E00A8EC58 /* TabView_home.swift */; };
 		A96BA16825E5651600A8EC58 /* TabView_profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BA16725E5651600A8EC58 /* TabView_profile.swift */; };
@@ -40,6 +40,9 @@
 		A9C5207025E6C84D00AEE181 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C5206F25E6C84D00AEE181 /* Indicator.swift */; };
 		A9C5207525E6D26700AEE181 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C5207425E6D26700AEE181 /* ChatView.swift */; };
 		A9C5207925E6D31600AEE181 /* Msg.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C5207825E6D31600AEE181 /* Msg.swift */; };
+		A9F119A125E7FFF2007747DE /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F119A025E7FFF2007747DE /* Profile.swift */; };
+		A9F119A525E80189007747DE /* SelfProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F119A425E80189007747DE /* SelfProfile.swift */; };
+		A9F119AD25E82D34007747DE /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F119AC25E82D34007747DE /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,7 +62,7 @@
 		A96BA13725E4098500A8EC58 /* CustomNumberPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNumberPad.swift; sourceTree = "<group>"; };
 		A96BA13A25E41A5200A8EC58 /* Verification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Verification.swift; sourceTree = "<group>"; };
 		A96BA14A25E44B2800A8EC58 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
-		A96BA15625E46B1B00A8EC58 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A96BA15625E46B1B00A8EC58 /* UserAndOwner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAndOwner.swift; sourceTree = "<group>"; };
 		A96BA15A25E487F100A8EC58 /* NewMember.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMember.swift; sourceTree = "<group>"; };
 		A96BA16225E5640E00A8EC58 /* TabView_home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView_home.swift; sourceTree = "<group>"; };
 		A96BA16725E5651600A8EC58 /* TabView_profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView_profile.swift; sourceTree = "<group>"; };
@@ -72,6 +75,9 @@
 		A9C5206F25E6C84D00AEE181 /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		A9C5207425E6D26700AEE181 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		A9C5207825E6D31600AEE181 /* Msg.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Msg.swift; sourceTree = "<group>"; };
+		A9F119A025E7FFF2007747DE /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		A9F119A425E80189007747DE /* SelfProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfProfile.swift; sourceTree = "<group>"; };
+		A9F119AC25E82D34007747DE /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,7 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				A96BA13425E4049200A8EC58 /* Countries.swift */,
-				A96BA15625E46B1B00A8EC58 /* User.swift */,
+				A96BA15625E46B1B00A8EC58 /* UserAndOwner.swift */,
 				A9C5205925E69BCB00AEE181 /* Recent.swift */,
 				A9C5207825E6D31600AEE181 /* Msg.swift */,
 			);
@@ -152,6 +158,7 @@
 				A96BA12425E3CC3F00A8EC58 /* LoginViewModel.swift */,
 				A9C5205625E69B5900AEE181 /* ChatObservable.swift */,
 				A9C5206C25E6C06E00AEE181 /* GetAllOwners.swift */,
+				A9F119A425E80189007747DE /* SelfProfile.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -167,6 +174,7 @@
 				A9C5206025E6ACC100AEE181 /* TabView_recommend.swift */,
 				A9C5206325E6ACFA00AEE181 /* TabView_notification.swift */,
 				A96BA16725E5651600A8EC58 /* TabView_profile.swift */,
+				A9F119A025E7FFF2007747DE /* Profile.swift */,
 				A9C5206725E6AE3A00AEE181 /* MassageBox.swift */,
 				A9C5207425E6D26700AEE181 /* ChatView.swift */,
 				A96BA13125E3F92700A8EC58 /* LoadingScreen.swift */,
@@ -179,6 +187,7 @@
 			isa = PBXGroup;
 			children = (
 				A9C5206F25E6C84D00AEE181 /* Indicator.swift */,
+				A9F119AC25E82D34007747DE /* ImagePicker.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -274,10 +283,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A96BA15725E46B1B00A8EC58 /* User.swift in Sources */,
+				A96BA15725E46B1B00A8EC58 /* UserAndOwner.swift in Sources */,
+				A9F119A125E7FFF2007747DE /* Profile.swift in Sources */,
 				A9C5206D25E6C06E00AEE181 /* GetAllOwners.swift in Sources */,
 				A96BA13B25E41A5200A8EC58 /* Verification.swift in Sources */,
 				A96BA16825E5651600A8EC58 /* TabView_profile.swift in Sources */,
+				A9F119A525E80189007747DE /* SelfProfile.swift in Sources */,
 				A9C5207525E6D26700AEE181 /* ChatView.swift in Sources */,
 				A9C5206825E6AE3A00AEE181 /* MassageBox.swift in Sources */,
 				A96BA12525E3CC3F00A8EC58 /* LoginViewModel.swift in Sources */,
@@ -285,6 +296,7 @@
 				A96BA15B25E487F100A8EC58 /* NewMember.swift in Sources */,
 				A96BA07225E3366300A8EC58 /* ContentView.swift in Sources */,
 				A96BA14B25E44B2800A8EC58 /* Home.swift in Sources */,
+				A9F119AD25E82D34007747DE /* ImagePicker.swift in Sources */,
 				A96BA07025E3366300A8EC58 /* MyAppApp.swift in Sources */,
 				A9C5206125E6ACC100AEE181 /* TabView_recommend.swift in Sources */,
 				A96BA13525E4049200A8EC58 /* Countries.swift in Sources */,

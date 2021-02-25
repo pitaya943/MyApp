@@ -14,10 +14,10 @@ struct ContentView: View {
         
         ZStack {
             if status {
-                Home()
+                withAnimation(.easeInOut) { Home() }
             }
             else {
-                NavigationView { Login() }
+                NavigationView { withAnimation(.easeInOut) { Login() } }
             }
         }
         

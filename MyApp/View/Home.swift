@@ -16,10 +16,10 @@ struct Home: View {
         
         ZStack {
             if newMember {
-                withAnimation { NewMember() }
+                withAnimation(.default) { NewMember() }
             }
             else {
-                CustomTabBar()
+                withAnimation(.default) { CustomTabBar() }
             }
         }
     }

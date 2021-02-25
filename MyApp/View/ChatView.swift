@@ -48,11 +48,9 @@ struct ChatView : View {
                     VStack(spacing: 8) {
                         
                         ForEach(self.msgs) { i in
-                            
-                            
                             HStack {
                                 
-                                if i.user == UserDefaults.standard.value(forKey: "uid") as! String {
+                                if i.user == UserDefaults.standard.value(forKey: "user") as! String {
                                     
                                     Spacer()
                                     
@@ -138,14 +136,14 @@ struct ChatView : View {
         
         db.collection("msgs").document(myuid!).collection(self.uid).order(by: "date", descending: false).addSnapshotListener { (snap, err) in
             
-            if err != nil{
+            if err != nil {
                 
                 print((err?.localizedDescription)!)
                 self.nomsgs = true
                 return
             }
             
-            if snap!.isEmpty{
+            if snap!.isEmpty {
                 
                 self.nomsgs = true
             }
@@ -163,6 +161,7 @@ struct ChatView : View {
                 }
 
             }
+            print("Load new message")
         }
     }
 }
@@ -199,14 +198,17 @@ func sendMsg(user: String,uid: String,pic: String,date: Date,msg: String) {
         if !snap!.exists{
             
             setRecents(user: user, uid: uid, pic: pic, msg: msg, date: date)
+            print("Set new chat to recents")
         }
         else{
             
             updateRecents(uid: uid, lastmsg: msg, date: date)
+            print("Update new message to recents")
         }
     }
     
     updateDB(uid: uid, msg: msg, date: date)
+    print("Update to each user's database")
 }
 
 func setRecents(user: String,uid: String,pic: String,msg: String,date: Date) {

@@ -85,7 +85,8 @@ class LoginViewModel: ObservableObject {
                     // Get default image from firebase
                     self.getImageFromFirebase()
                     
-                    try userRef.setData(from: User(id: self.uid, name: "", phoneNumber: self.phone, pic: self.pic))
+                    // initialize user data
+                    try userRef.setData(from: User(id: self.uid, phoneNumber: self.phone, pic: self.pic))
                     print("New user logged!!!")
                     
                     // If user not exist then toggle newMember

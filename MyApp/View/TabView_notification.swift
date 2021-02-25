@@ -14,7 +14,6 @@ struct TabView_notification: View {
             
             Text("通知")
             
-            logoutButton()
         }
     }
 }

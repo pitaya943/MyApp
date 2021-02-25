@@ -18,86 +18,118 @@ import SDWebImageSwiftUI
 
 struct TabView_profile: View {
     
+    @StateObject var datas = SelfProfile()
     @AppStorage("pic") var pic = ""
     @AppStorage("user") var user = ""
+    @AppStorage("log_Status") var status = false
+    @State private var showingAlert = false
     
     var pic2 = "https://kb.rspca.org.au/wp-content/uploads/2018/11/golder-retriever-puppy.jpeg"
+    var title = ["基本資料設定", "訊息箱", "已收藏", "換宿紀錄", "設定"]
         
     var body: some View {
             
+        
         VStack {
             
             VStack {
-                if pic != "" {
-                    AnimatedImage(url: URL(string: pic)!)
+                if datas.userDetail.pic != "" {
+                    AnimatedImage(url: URL(string: datas.userDetail.pic)!)
                         .resizable()
                         .renderingMode(.original)
                         .frame(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 3)
                         .clipShape(Circle())
                     
-                    Text(user)
+                    Text(datas.userDetail.name)
                 }
                 
             }.padding()
-                
-            
+                            
             List {
-                NavigationLink(destination: Profile()){
+                NavigationLink(destination: Profile(datas: datas)
+                                .navigationBarTitle(title[0], displayMode: .inline)){
                     HStack {
                         Image(systemName: "person.fill")
                             .foregroundColor(.blue)
-                        Text("基本資料設定").offset(x: 5, y: 0)
+                        Text(title[0]).offset(x: 5, y: 0)
                     }
                 }
+                
                 // .environmentObject(ChatObservable())
-                NavigationLink(destination: MassageBox().environmentObject(ChatObservable())){
+                NavigationLink(destination: MassageBox().environmentObject(ChatObservable())
+                                .navigationBarTitle(title[1], displayMode: .inline)){
                     HStack {
                         Image(systemName: "tray")
                             .foregroundColor(.blue)
-                        Text("訊息箱").offset(x: 5, y: 0)
+                        Text(title[1]).offset(x: 5, y: 0)
                     }
                 }
+                .navigationBarTitle(title[1], displayMode: .inline)
                 
-                NavigationLink(destination: Collection()){
+                
+                NavigationLink(destination: Collection()
+                                .navigationBarTitle(title[2], displayMode: .inline)){
                     HStack {
                         Image(systemName: "heart.fill")
                             .foregroundColor(.blue)
-                        Text("已收藏").offset(x: 5, y: 0)
+                        Text(title[2]).offset(x: 5, y: 0)
                     }
                 }
+                .navigationBarTitle(title[2], displayMode: .inline)
+
                 
-                NavigationLink(destination: Record()){
+                NavigationLink(destination: Record()
+                                .navigationBarTitle(title[3], displayMode: .inline)){
                     HStack {
                         Image(systemName: "square.and.pencil")
                             .foregroundColor(.blue)
-                        Text("換宿紀錄").offset(x: 5, y: 0)
+                        Text(title[3]).offset(x: 5, y: 0)
                     }
                 }
+                .navigationBarTitle(title[3], displayMode: .inline)
+
                 
-                NavigationLink(destination: Setting()){
+                NavigationLink(destination: Setting()
+                                .navigationBarTitle(title[4], displayMode: .inline)){
                     HStack {
                         Image(systemName: "gearshape.fill")
                             .foregroundColor(.blue)
-                        Text("設定").offset(x: 5, y: 0)
+                        Text(title[4]).offset(x: 5, y: 0)
                     }
                 }
+                .navigationBarTitle(title[4], displayMode: .inline)
+
                 
-                HStack { logoutButton() }
+                HStack { logoutButton(showingAlert: $showingAlert) }
                 .frame(width: UIScreen.main.bounds.width - 40)
                 
             }
             .listStyle(GroupedListStyle())
             
         }
+        .alert(isPresented: $showingAlert) {
+            Alert(title: Text(""), message: Text("確定要登出嗎？"), primaryButton: .destructive(Text("確定"), action: {
+                logoutRequest()
+            }), secondaryButton: .cancel(Text("取消"), action: { print("Logout alert cancel") }))
+        }
 
     }
     
-}
-
-struct Profile: View {
-    var body: some View {
-        Text("profile view")
+    
+    
+    func logoutRequest() {
+        status.toggle()
+        resetUserdefault()
+        print("User logout!")
     }
+    
+    func resetUserdefault() {
+        let domain = Bundle.main.bundleIdentifier!
+        UserDefaults.standard.removePersistentDomain(forName: domain)
+        UserDefaults.standard.synchronize()
+        print("Userdefault clear")
+    }
+    
 }
 
 struct Record: View {
@@ -120,26 +152,16 @@ struct Collection: View {
 
 struct logoutButton: View {
     
-    @AppStorage("log_Status") var status = false
+    @Binding var showingAlert: Bool
     
     var body: some View {
         
-        Button(action: {
-            withAnimation(.easeInOut) {
-                status.toggle()
-                resetUserdefault()
-            }
-        }, label: {
+        Button(action: { showingAlert.toggle() }, label: {
             Text("登出")
                 .foregroundColor(.red)
         })
     }
     
-    func resetUserdefault() {
-        let domain = Bundle.main.bundleIdentifier!
-        UserDefaults.standard.removePersistentDomain(forName: domain)
-        UserDefaults.standard.synchronize()
-    }
 }
 
 

@@ -66,12 +66,12 @@ struct Verification: View {
                         })
                     }
                     
-                    Button(action: {}, label: {
-                        Text("使用通話驗證")
-                            .fontWeight(.bold)
-                            .foregroundColor(.blue)
-                    })
-                    .padding(.top, 6)
+//                    Button(action: {}, label: {
+//                        Text("使用通話驗證")
+//                            .fontWeight(.bold)
+//                            .foregroundColor(.blue)
+//                    })
+//                    .padding(.top, 6)
                     
                     Button(action: accountCreation.verifyCode, label: {
                         Text("驗證後登入")
@@ -130,12 +130,6 @@ struct CodeView: View {
                 .fill(Color.gray.opacity(0.5))
                 .frame(height: 4)
         }
-    }
-}
-
-struct V_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }
 

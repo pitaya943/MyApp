@@ -8,7 +8,7 @@
 import SwiftUI
 import Firebase
 
-class getAllOwners : ObservableObject{
+class getAllOwners : ObservableObject {
     
     @Published var owners = [Owner]()
     @Published var empty = false
@@ -27,13 +27,13 @@ class getAllOwners : ObservableObject{
                 return
             }
             
-            if (snap?.documents.isEmpty)!{
+            if (snap?.documents.isEmpty)! {
                 
                 self.empty = true
                 return
             }
             
-            for i in snap!.documents{
+            for i in snap!.documents {
                 
                 let id = i.documentID
                 let name = i.get("name") as! String
