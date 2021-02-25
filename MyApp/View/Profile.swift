@@ -12,7 +12,7 @@ import SDWebImageSwiftUI
 struct Profile: View {
     
     @ObservedObject var datas: SelfProfile
-    @State var picker = false
+    @State var showingImagePicker = false
     @State var imagedata : Data = .init(count: 0)
 
     var body: some View {
@@ -21,12 +21,7 @@ struct Profile: View {
             
             VStack {
                 if datas.userDetail.pic != "" {
-                    AnimatedImage(url: URL(string: datas.userDetail.pic)!)
-                        .resizable()
-                        .renderingMode(.original)
-                        .frame(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 3)
-                        .clipShape(Circle())
-                    
+                    PicPresentation(url: datas.userDetail.pic, showingImagePicker: $showingImagePicker)
                     Text(datas.userDetail.name)
                 }
                 
@@ -74,8 +69,8 @@ struct Profile: View {
             .listStyle(GroupedListStyle())
             
         }
-        .sheet(isPresented: self.$picker, content: {
-            ImagePicker(picker: self.$picker, imagedata: $imagedata)
+        .sheet(isPresented: self.$showingImagePicker, onDismiss: { datas.setPicture(imagedata: imagedata) }, content: {
+            ImagePicker(picker: self.$showingImagePicker, imagedata: $imagedata)
         })
         
         
@@ -111,8 +106,38 @@ struct NavigationLabel: View {
     }
 }
 
+struct PicPresentation: View {
+    
+    var url: String
+    @Binding var showingImagePicker: Bool
+    
+    var body: some View {
+            
+        ZStack(alignment: .bottomTrailing) {
+            AnimatedImage(url: URL(string: url)!)
+                .resizable()
+                .renderingMode(.original)
+                .frame(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 3)
+                .clipShape(Circle())
+            
+            
+            Button(action: { showingImagePicker.toggle() }, label: {
+                
+                Image(systemName: "camera.fill")
+                    .foregroundColor(.white)
+                    .font(Font.system(size: 20))
+                    .frame(width: 35, height: 35)
+                    .background(Color.black.opacity(0.5))
+                    .clipShape(Circle())
+            })
+        }
+    
+    }
+}
+
 struct Profile_Previews: PreviewProvider {
     static var previews: some View {
+        //PicPresentation()
         Profile(datas: SelfProfile())
     }
 }

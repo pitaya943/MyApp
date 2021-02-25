@@ -51,8 +51,40 @@ class SelfProfile: ObservableObject {
                 
             }
         }
+    }
+    
+    func setPicture(imagedata: Data) {
         
+        let db = Firestore.firestore()
+        let storage = Storage.storage().reference()
+        let uid = Auth.auth().currentUser?.uid
         
+        // Put imagedata to firebase
+        storage.child("profilePics").child(uid!).putData(imagedata, metadata: nil) { (_, err) in
+            
+            if err != nil {
+                
+                print((err?.localizedDescription)!)
+                return
+            }
+            // Download back to store
+            storage.child("profilePics").child(uid!).downloadURL { (url, err) in
+                
+                if err != nil {
+                    
+                    print((err?.localizedDescription)!)
+                    return
+                }
+                // Update user pic url
+                db.collection("User").document(uid!).setData(["pic" :"\(url!)"], merge: true) { (err) in
+                    if err != nil{
+                        
+                        print((err?.localizedDescription)!)
+                        return
+                    }
+                }
+            }
+        }
     }
     
 }
