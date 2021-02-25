@@ -74,34 +74,59 @@ struct ChatView : View {
                             }
                         }
                     }
+                    .padding()
                 }
             }
             
-            HStack {
-                
-                TextField("訊息", text: self.$txt)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                
-                Button(action: {
+            VStack {
+                HStack {
                     
-                    sendMsg(user: self.name, uid: self.uid, pic: self.pic, date: Date(), msg: self.txt)
+                    Button(action: {
+                        // toggling image picker
+                        
+                    }, label: {
+                        Image(systemName: "paperclip.circle.fill")
+                            .font(.system(size: 30))
+                            .foregroundColor(.blue)
+                    })
                     
-                    self.txt = ""
+                    TextField("訊息", text: self.$txt)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
                     
-                }) {
+                    if self.txt != "" {
+                        Button(action: {
+                            withAnimation {
+                                sendMsg(user: self.name, uid: self.uid, pic: self.pic, date: Date(), msg: self.txt)
+                            }
+                            self.txt = ""
+                            
+                        }) {
+                            Image(systemName: "paperplane.fill")
+                                .font(.system(size: 18))
+                                .foregroundColor(.white)
+                                .frame(width: 40, height: 40)
+                                .background(Color.blue)
+                                .clipShape(Circle())
+                        }
+                    }
                     
-                    Text("傳送")
                 }
-            }
-            .navigationBarTitle("\(name)",displayMode: .inline)
-            .navigationBarBackButtonHidden(true)
-            .navigationBarItems(leading: Button(action: { self.chat.toggle() }, label: {
+                .padding(.horizontal)
+                .frame(height: 60)
+                .clipShape(Capsule())
+                .background(Color.white)
+                .animation(.default)
                 
-                    Image(systemName: "arrow.left").resizable().frame(width: 20, height: 15)
-                    
-                }))
+            }
+        }
+        .navigationBarTitle("\(name)",displayMode: .inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: Button(action: { self.chat.toggle() }, label: {
             
-        }.padding()
+                Image(systemName: "arrow.left").resizable().frame(width: 20, height: 15)
+                
+            }))
+        .background(Color.black.opacity(0.06))
         .onAppear { self.getMsgs() }
     }
     

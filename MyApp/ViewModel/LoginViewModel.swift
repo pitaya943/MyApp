@@ -48,6 +48,8 @@ class LoginViewModel: ObservableObject {
     
     // Storage in firebase
     let storage = Storage.storage().reference()
+    // Firebase
+    let db = Firestore.firestore()
     
     func getCountryCode() -> String {
         
@@ -57,7 +59,6 @@ class LoginViewModel: ObservableObject {
     }
     
     func getUserData() {
-        let db = Firestore.firestore()
         
         // Setting userdefault
         uid = Auth.auth().currentUser?.uid ?? ""
@@ -70,9 +71,10 @@ class LoginViewModel: ObservableObject {
             if let document = document, document.exists {
                 
                 let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                
                 // Getting user name for userdefault from firebase
-                self.user = document.get("name") as! String
-                self.pic = document.get("pic") as! String
+                UserDefaults.standard.set(document.get("name") as! String, forKey: "user")
+                UserDefaults.standard.set(document.get("pic") as! String, forKey: "pic")
                 
                 print("Logging user data: \(dataDescription)")
                 
@@ -80,7 +82,10 @@ class LoginViewModel: ObservableObject {
             }
             else {
                 do {
-                    try userRef.setData(from: User(id: self.uid, name: "", phoneNumber: self.phone, pic: "https://www.irishtimes.com/polopoly_fs/1.3384848.1518095548!/image/image.jpg_gen/derivatives/ratio_1x1_w1200/image.jpg"))
+                    // Get default image from firebase
+                    self.getImageFromFirebase()
+                    
+                    try userRef.setData(from: User(id: self.uid, name: "", phoneNumber: self.phone, pic: self.pic))
                     print("New user logged!!!")
                     
                     // If user not exist then toggle newMember
@@ -99,7 +104,7 @@ class LoginViewModel: ObservableObject {
         
         // Disabling App Verification...
         // Undo it while testing with live Phone....
-        // Auth.auth().settings?.isAppVerificationDisabledForTesting = true
+        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
         loading = true
         let number = "+\(getCountryCode())\(phNumber)"
         PhoneAuthProvider.provider().verifyPhoneNumber(number, uiDelegate: nil) { (CODE, err) in
@@ -126,11 +131,12 @@ class LoginViewModel: ObservableObject {
             
             self.loading = false
             
-            if err != nil{
+            if err != nil {
                 self.errorMsg = err!.localizedDescription
                 withAnimation{ self.error.toggle() }
                 return
             }
+            
             // Else user logged in Successfully
             self.getUserData()
             withAnimation { self.status = true }
@@ -154,5 +160,26 @@ class LoginViewModel: ObservableObject {
             self.error.toggle()
         }
     }
+    
+    func getImageFromFirebase() {
+
+        let storage = Storage.storage().reference()
+        let userRef = db.collection("User").document(uid)
+
+        storage.child("defaultPic/pig.jpg").downloadURL { (url, err) in
+
+            if err != nil {
+
+                print((err?.localizedDescription)!)
+                return
+            }
+            
+            UserDefaults.standard.set("\(url!)", forKey: "pic")
+            userRef.setData(["pic" :self.pic], merge: true)
+            print("url default set")
+        }
+    }
+    
+    
     
 }

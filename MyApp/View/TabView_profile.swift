@@ -28,13 +28,15 @@ struct TabView_profile: View {
         VStack {
             
             VStack {
-                AnimatedImage(url: URL(string: pic2)!)
-                    .resizable()
-                    .renderingMode(.original)
-                    .frame(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 3)
-                    .clipShape(Circle())
-                
-                Text("user")
+                if pic != "" {
+                    AnimatedImage(url: URL(string: pic)!)
+                        .resizable()
+                        .renderingMode(.original)
+                        .frame(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 3)
+                        .clipShape(Circle())
+                    
+                    Text(user)
+                }
                 
             }.padding()
                 
@@ -48,7 +50,7 @@ struct TabView_profile: View {
                     }
                 }
                 // .environmentObject(ChatObservable())
-                NavigationLink(destination: MassageBox()){
+                NavigationLink(destination: MassageBox().environmentObject(ChatObservable())){
                     HStack {
                         Image(systemName: "tray")
                             .foregroundColor(.blue)
@@ -85,8 +87,6 @@ struct TabView_profile: View {
                 
             }
             .listStyle(GroupedListStyle())
-            .navigationBarTitle("我的帳戶", displayMode: .inline)
-            
             
         }
 

@@ -12,9 +12,10 @@ struct TabView_notification: View {
         
         VStack {
             
+            Text("通知")
+            
             logoutButton()
         }
-        
     }
 }
 

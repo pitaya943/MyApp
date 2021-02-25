@@ -204,9 +204,3 @@ struct OwnerCellView : View {
         }
     }
 }
-
-struct MassageBox_Previews: PreviewProvider {
-    static var previews: some View {
-        MassageBox()
-    }
-}

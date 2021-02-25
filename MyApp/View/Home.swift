@@ -29,9 +29,13 @@ struct Home: View {
 var tabItems = ["home", "recommend", "notification", "profile"]
 var tabTitles = ["home": "首頁", "notification": "通知", "recommend": "推薦", "profile": "我的帳戶"]
 
+enum Tab {
+    case home, recommend, notification, profile
+}
+
 struct CustomTabBar: View {
     
-    @State var selectedTab = "home"
+    @State private var selectedTab: Tab = .home
     
     var body: some View {
         
@@ -41,39 +45,70 @@ struct CustomTabBar: View {
                 TabView(selection: $selectedTab) {
                     
                     TabView_home()
-                        .tag(tabItems[0])
+                        .tabItem { NavigationLink(destination: TabView_home(), label: {
+                            TabButton(image: "home", title: "首頁")
+                        })}
+                        .tag(Tab.home)
                         .navigationBarHidden(true)
                     TabView_recommend()
-                        .tag(tabItems[1])
+                        .tabItem { NavigationLink(destination: TabView_home(), label: {
+                            TabButton(image: "recommend", title: "推薦")
+                        })}
+                        .tag(Tab.recommend)
                         .navigationBarHidden(true)
                     TabView_notification()
-                        .tag(tabItems[2])
+                        .tabItem { NavigationLink(destination: TabView_home(), label: {
+                            TabButton(image: "notification", title: "通知")
+                        })}
+                        .tag(Tab.notification)
                         .navigationBarHidden(true)
                     TabView_profile()
-                        .tag(tabItems[3])
-                        .navigationBarHidden(false)
+                        .tabItem { NavigationLink(destination: TabView_home(), label: {
+                            TabButton(image: "profile", title: "個人資料")
+                        })}
+                        .tag(Tab.profile)
                     
                 }
                 .ignoresSafeArea(.all, edges: .bottom)
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .navigationBarTitle("我的帳戶", displayMode: .inline)
+                //.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 
             }
             
-            HStack(spacing: 0) {
-                
-                ForEach(tabItems, id: \.self) { image in
-                    CustomTabButton(image: image,title: tabTitles[image] ?? "" ,selectedTab: $selectedTab)
-                    
-                    if image != tabItems.last { Spacer(minLength: 0) }
-                }
-            }
-            .padding(.horizontal, 25)
-            .padding(.vertical, 5)
-            .background(Color.white)
-            .clipShape(Capsule())
-            .shadow(color: Color.black.opacity(0.15), radius: 5, x: 5, y: 5)
-            .shadow(color: Color.black.opacity(0.15), radius: 5, x: -5, y: -5)
-            .padding(.horizontal)
+//            HStack(spacing: 0) {
+//
+//                ForEach(tabItems, id: \.self) { image in
+//                    CustomTabButton(image: image,title: tabTitles[image] ?? "" ,selectedTab: $selectedTab)
+//
+//                    if image != tabItems.last { Spacer(minLength: 0) }
+//                }
+//            }
+//            .padding(.horizontal, 25)
+//            .padding(.vertical, 5)
+//            .background(Color.white)
+//            .clipShape(Capsule())
+//            .shadow(color: Color.black.opacity(0.15), radius: 5, x: 5, y: 5)
+//            .shadow(color: Color.black.opacity(0.15), radius: 5, x: -5, y: -5)
+//            .padding(.horizontal)
+        }
+    }
+}
+
+struct TabButton: View {
+    
+    var image: String
+    var title: String
+    
+    var body: some View {
+        
+        VStack(spacing: 6) {
+            Image(image)
+                .renderingMode(.template)
+                .resizable()
+                .foregroundColor(Color.black.opacity(0.4))
+            Text(title)
+                .font(.caption)
+                .foregroundColor(Color.black)
         }
     }
 }
