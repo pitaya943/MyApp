@@ -7,7 +7,15 @@
 
 import SwiftUI
 
-let countries = ["AF":"93",
+struct Countries: Hashable, Codable {
+    
+//    var id: String
+    var tw: String
+    var en: String
+    var emoji: String
+}
+
+let countries_code = ["AF":"93",
                                       "AL":"355",
                                       "DZ":"213",
                                       "AS":"1",

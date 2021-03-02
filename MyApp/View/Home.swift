@@ -51,19 +51,19 @@ struct CustomTabBar: View {
                         .tag(Tab.home)
                         .navigationBarHidden(true)
                     TabView_recommend()
-                        .tabItem { NavigationLink(destination: TabView_home(), label: {
+                        .tabItem { NavigationLink(destination: TabView_recommend(), label: {
                             TabButton(image: "recommend", title: "推薦")
                         })}
                         .tag(Tab.recommend)
                         .navigationBarHidden(true)
                     TabView_notification()
-                        .tabItem { NavigationLink(destination: TabView_home(), label: {
+                        .tabItem { NavigationLink(destination: TabView_notification(), label: {
                             TabButton(image: "notification", title: "通知")
                         })}
                         .tag(Tab.notification)
                         .navigationBarHidden(true)
                     TabView_profile()
-                        .tabItem { NavigationLink(destination: TabView_home(), label: {
+                        .tabItem { NavigationLink(destination: TabView_profile(), label: {
                             TabButton(image: "profile", title: "個人資料")
                         })}
                         .tag(Tab.profile)
@@ -74,22 +74,6 @@ struct CustomTabBar: View {
                 //.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
                 
             }
-            
-//            HStack(spacing: 0) {
-//
-//                ForEach(tabItems, id: \.self) { image in
-//                    CustomTabButton(image: image,title: tabTitles[image] ?? "" ,selectedTab: $selectedTab)
-//
-//                    if image != tabItems.last { Spacer(minLength: 0) }
-//                }
-//            }
-//            .padding(.horizontal, 25)
-//            .padding(.vertical, 5)
-//            .background(Color.white)
-//            .clipShape(Capsule())
-//            .shadow(color: Color.black.opacity(0.15), radius: 5, x: 5, y: 5)
-//            .shadow(color: Color.black.opacity(0.15), radius: 5, x: -5, y: -5)
-//            .padding(.horizontal)
         }
     }
 }

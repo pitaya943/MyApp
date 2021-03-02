@@ -43,6 +43,10 @@
 		A9F119A125E7FFF2007747DE /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F119A025E7FFF2007747DE /* Profile.swift */; };
 		A9F119A525E80189007747DE /* SelfProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F119A425E80189007747DE /* SelfProfile.swift */; };
 		A9F119AD25E82D34007747DE /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F119AC25E82D34007747DE /* ImagePicker.swift */; };
+		A9F119BF25E86E0E007747DE /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = A9F119BE25E86E0E007747DE /* SwiftyJSON */; };
+		A9F119C325E8775F007747DE /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A9F119C225E8775F007747DE /* Alamofire */; };
+		A9F119C925E88689007747DE /* countryData.json in Resources */ = {isa = PBXBuildFile; fileRef = A9F119C825E88689007747DE /* countryData.json */; };
+		A9F119CC25E94149007747DE /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F119CB25E94149007747DE /* CustomSearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +82,8 @@
 		A9F119A025E7FFF2007747DE /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		A9F119A425E80189007747DE /* SelfProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfProfile.swift; sourceTree = "<group>"; };
 		A9F119AC25E82D34007747DE /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		A9F119C825E88689007747DE /* countryData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countryData.json; sourceTree = "<group>"; };
+		A9F119CB25E94149007747DE /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +92,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9C5205E25E6A42000AEE181 /* SDWebImageSwiftUI in Frameworks */,
+				A9F119C325E8775F007747DE /* Alamofire in Frameworks */,
+				A9F119BF25E86E0E007747DE /* SwiftyJSON in Frameworks */,
 				A96BA08125E3392D00A8EC58 /* Lottie in Frameworks */,
 				A96BA11C25E3C76300A8EC58 /* FirebaseStorage in Frameworks */,
 				A96BA15425E4624C00A8EC58 /* FirebaseFirestoreSwift-Beta in Frameworks */,
@@ -124,6 +132,7 @@
 				A96BA06F25E3366300A8EC58 /* MyAppApp.swift */,
 				A96BA07125E3366300A8EC58 /* ContentView.swift */,
 				A96BA08325E3394700A8EC58 /* LottieView.swift */,
+				A9F119C825E88689007747DE /* countryData.json */,
 				A96BA07325E3366500A8EC58 /* Assets.xcassets */,
 				A96BA11325E3C63D00A8EC58 /* GoogleService-Info.plist */,
 				A96BA07825E3366500A8EC58 /* Info.plist */,
@@ -188,6 +197,7 @@
 			children = (
 				A9C5206F25E6C84D00AEE181 /* Indicator.swift */,
 				A9F119AC25E82D34007747DE /* ImagePicker.swift */,
+				A9F119CB25E94149007747DE /* CustomSearchBar.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -222,6 +232,8 @@
 				A96BA11B25E3C76300A8EC58 /* FirebaseStorage */,
 				A96BA15325E4624C00A8EC58 /* FirebaseFirestoreSwift-Beta */,
 				A9C5205D25E6A42000AEE181 /* SDWebImageSwiftUI */,
+				A9F119BE25E86E0E007747DE /* SwiftyJSON */,
+				A9F119C225E8775F007747DE /* Alamofire */,
 			);
 			productName = MyApp;
 			productReference = A96BA06C25E3366300A8EC58 /* MyApp.app */;
@@ -254,6 +266,8 @@
 				A96BA07F25E3392D00A8EC58 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				A96BA11625E3C76300A8EC58 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				A9C5205C25E6A41F00AEE181 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
+				A9F119BD25E86E0E007747DE /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				A9F119C125E8775F007747DE /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = A96BA06D25E3366300A8EC58 /* Products */;
 			projectDirPath = "";
@@ -269,6 +283,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9F119C925E88689007747DE /* countryData.json in Resources */,
 				A96BA11425E3C63D00A8EC58 /* GoogleService-Info.plist in Resources */,
 				A96BA10B25E3440F00A8EC58 /* login.json in Resources */,
 				A96BA07725E3366500A8EC58 /* Preview Assets.xcassets in Resources */,
@@ -297,6 +312,7 @@
 				A96BA07225E3366300A8EC58 /* ContentView.swift in Sources */,
 				A96BA14B25E44B2800A8EC58 /* Home.swift in Sources */,
 				A9F119AD25E82D34007747DE /* ImagePicker.swift in Sources */,
+				A9F119CC25E94149007747DE /* CustomSearchBar.swift in Sources */,
 				A96BA07025E3366300A8EC58 /* MyAppApp.swift in Sources */,
 				A9C5206125E6ACC100AEE181 /* TabView_recommend.swift in Sources */,
 				A96BA13525E4049200A8EC58 /* Countries.swift in Sources */,
@@ -525,6 +541,22 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		A9F119BD25E86E0E007747DE /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		A9F119C125E8775F007747DE /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.4.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -557,6 +589,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A9C5205C25E6A41F00AEE181 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
+		};
+		A9F119BE25E86E0E007747DE /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A9F119BD25E86E0E007747DE /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		A9F119C225E8775F007747DE /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A9F119C125E8775F007747DE /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

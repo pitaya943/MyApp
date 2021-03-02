@@ -8,12 +8,18 @@
 import SwiftUI
 import Firebase
 import SDWebImageSwiftUI
+import SwiftyJSON
 
 struct Profile: View {
     
+    
     @ObservedObject var datas: SelfProfile
+    // Imagepicker
     @State var showingImagePicker = false
+    @State var showingNationalityPicker = false
     @State var imagedata : Data = .init(count: 0)
+    // selected country
+    @State var countryIndex = 0
 
     var body: some View {
         
@@ -46,9 +52,12 @@ struct Profile: View {
                     
                 }
                 
-                NavigationLink(
-                    destination: Text(datas.userDetail.nationality!),
-                    label: { NavigationLabel(tag: "國籍", text: datas.userDetail.nationality!) })
+                Button(action: { withAnimation(.default) { showingNationalityPicker.toggle() } }, label: { NavigationLabel(tag: "國籍", text: datas.userDetail.nationality!) })
+                    .foregroundColor(.black)
+                
+//                NavigationLink(
+//                    destination: Nationality(),
+//                    label: { NavigationLabel(tag: "國籍", text: datas.userDetail.nationality!) })
                 
                 NavigationLink(
                     destination: Text(datas.userDetail.age!),
@@ -67,6 +76,12 @@ struct Profile: View {
                 
             }
             .listStyle(GroupedListStyle())
+            
+            if showingNationalityPicker {
+                Nationality(present: $showingNationalityPicker, myNationality: $datas.userDetail.nationality)
+                    .onDisappear(perform: datas.updateNationaality)
+            }
+            
             
         }
         .sheet(isPresented: self.$showingImagePicker, onDismiss: { datas.setPicture(imagedata: imagedata) }, content: {
@@ -135,9 +150,73 @@ struct PicPresentation: View {
     }
 }
 
+
+struct Nationality: View {
+    
+    @State private var countryIndex = 0
+    @Binding var present: Bool
+    @Binding var myNationality: String?
+    
+    var body: some View {
+        
+        VStack(spacing: 0) {
+            HStack {
+                Spacer()
+                Button(action: { withAnimation(.easeOut) { present.toggle() } }, label: {
+                    Text("確定")
+                })
+            }
+            .padding()
+            .background(Color.gray.opacity(0.2))
+
+            
+            Picker(selection: $countryIndex, label: Text("Country"), content: {
+                
+                ForEach(0..<fetch().count) {
+                    
+                    Text("\(fetch()[$0].tw)")
+                        .tag($0)
+                }
+                
+            }).onDisappear(perform: setNationality)
+        }
+        .onAppear(perform: setCountryIndex)
+        
+    }
+    
+    func setCountryIndex() {
+        
+        for index in 0..<fetch().count {
+            
+            if fetch()[index].tw == myNationality {
+                countryIndex = index
+            }
+                
+        }
+    }
+    
+    func setNationality() {
+        myNationality = fetch()[countryIndex].tw
+    }
+    
+    func fetch() -> [Countries] {
+        let url = Bundle.main.url(forResource: "countryData", withExtension: "json")!
+        let data = try! Data(contentsOf: url)
+        let decoder = JSONDecoder()
+        let countryArray = try? decoder.decode([Countries].self, from: data)
+        
+        // Sorted array
+        return countryArray!.sorted() { $1.tw.count > $0.tw.count }
+        
+    }
+    
+}
+
+
 struct Profile_Previews: PreviewProvider {
     static var previews: some View {
-        //PicPresentation()
-        Profile(datas: SelfProfile())
+        Text("123")
+        //Nationality()
+        //Profile(datas: SelfProfile())
     }
 }

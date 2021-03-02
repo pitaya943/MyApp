@@ -13,10 +13,10 @@ class SelfProfile: ObservableObject {
     @Published var userDetail = User()
     
     init() {
-        
+
         let db = Firestore.firestore()
         let uid = Auth.auth().currentUser?.uid
-
+        
         db.collection("User").document(uid!).addSnapshotListener(includeMetadataChanges: true) { (snap, err) in
             
             
@@ -53,11 +53,30 @@ class SelfProfile: ObservableObject {
         }
     }
     
+    func updateNationaality() {
+        
+        let db = Firestore.firestore()
+        let uid = Auth.auth().currentUser?.uid
+        
+        let userRef = db.collection("User").document(uid!)
+        if userDetail.nationality != nil {
+            userRef.updateData(["nationality" : userDetail.nationality!]){ err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    print("Document successfully updated")
+                }
+            }
+            
+            print("Nationality setting")
+        }
+    }
+    
     func setPicture(imagedata: Data) {
         
         let db = Firestore.firestore()
-        let storage = Storage.storage().reference()
         let uid = Auth.auth().currentUser?.uid
+        let storage = Storage.storage().reference()
         
         // Put imagedata to firebase
         storage.child("profilePics").child(uid!).putData(imagedata, metadata: nil) { (_, err) in
