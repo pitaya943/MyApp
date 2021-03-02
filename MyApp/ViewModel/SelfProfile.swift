@@ -53,6 +53,24 @@ class SelfProfile: ObservableObject {
         }
     }
     
+    func updateAge() {
+        
+        let db = Firestore.firestore()
+        let uid = Auth.auth().currentUser?.uid
+        
+        let userRef = db.collection("User").document(uid!)
+        if userDetail.nationality != nil {
+            userRef.updateData(["age" : userDetail.age!]){ err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    print("Document successfully updated")
+                }
+            }
+            print("Age setting")
+        }
+    }
+    
     func updateNationaality() {
         
         let db = Firestore.firestore()
@@ -67,7 +85,6 @@ class SelfProfile: ObservableObject {
                     print("Document successfully updated")
                 }
             }
-            
             print("Nationality setting")
         }
     }

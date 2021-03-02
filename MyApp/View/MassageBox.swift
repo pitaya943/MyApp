@@ -141,28 +141,31 @@ struct newChatView : View {
                 }
                 else {
                     
-                    Text("與業者聊天").font(.title).foregroundColor(Color.black.opacity(0.5))
-                    
-                    ScrollView(.vertical, showsIndicators: false) {
+                    VStack {
+                        Text("與業者聊天").font(.title).foregroundColor(Color.black)
                         
-                        VStack(spacing: 12){
+                        ScrollView(.vertical, showsIndicators: false) {
                             
-                            ForEach(datas.owners) { i in
+                            VStack(spacing: 12){
                                 
-                                Button(action: {
+                                ForEach(datas.owners) { i in
                                     
-                                    self.uid = i.id
-                                    self.name = i.name
-                                    self.pic = i.pic
-                                    self.show.toggle()
-                                    self.chat.toggle()
-                                    
-                                }) {
-                                    OwnerCellView(url: i.pic, name: i.name, about: i.about)
+                                    Button(action: {
+                                        
+                                        self.uid = i.id
+                                        self.name = i.name
+                                        self.pic = i.pic
+                                        self.show.toggle()
+                                        self.chat.toggle()
+                                        
+                                    }) {
+                                        OwnerCellView(url: i.pic, name: i.name, about: i.about)
+                                    }
                                 }
                             }
                         }
                     }
+                    .padding()
               }
         }
         .padding()

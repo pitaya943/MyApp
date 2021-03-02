@@ -50,7 +50,7 @@ struct ChatView : View {
                         ForEach(self.msgs) { i in
                             HStack {
                                 
-                                if i.user == UserDefaults.standard.value(forKey: "user") as! String {
+                                if i.user == UserDefaults.standard.value(forKey: "uid") as! String {
                                     
                                     Spacer()
                                     
@@ -186,7 +186,7 @@ func sendMsg(user: String,uid: String,pic: String,date: Date,msg: String) {
     
     db.collection("Owner").document(uid).collection("recents").document(myuid!).getDocument { (snap, err) in
         
-        if err != nil{
+        if err != nil {
             
             print((err?.localizedDescription)!)
             // if there is no recents records....
@@ -195,14 +195,14 @@ func sendMsg(user: String,uid: String,pic: String,date: Date,msg: String) {
             return
         }
         
-        if !snap!.exists{
+        if !snap!.exists {
             
             setRecents(user: user, uid: uid, pic: pic, msg: msg, date: date)
             print("Set new chat to recents")
         }
-        else{
+        else {
             
-            updateRecents(uid: uid, lastmsg: msg, date: date)
+            updateRecents(user: user, uid: uid, pic: pic, msg: msg, date: date)
             print("Update new message to recents")
         }
     }
@@ -223,7 +223,7 @@ func setRecents(user: String,uid: String,pic: String,msg: String,date: Date) {
     
     db.collection("Owner").document(uid).collection("recents").document(myuid!).setData(["name": myname, "pic": mypic, "lastmsg": msg, "date": date]) { (err) in
         
-        if err != nil{
+        if err != nil {
             
             print((err?.localizedDescription)!)
             return
@@ -232,7 +232,7 @@ func setRecents(user: String,uid: String,pic: String,msg: String,date: Date) {
     
     db.collection("User").document(myuid!).collection("recents").document(uid).setData(["name": user, "pic": pic, "lastmsg": msg, "date": date]) { (err) in
         
-        if err != nil{
+        if err != nil {
             
             print((err?.localizedDescription)!)
             return
@@ -240,15 +240,19 @@ func setRecents(user: String,uid: String,pic: String,msg: String,date: Date) {
     }
 }
 
-func updateRecents(uid: String,lastmsg: String,date: Date) {
+func updateRecents(user: String,uid: String,pic: String,msg: String,date: Date) {
     
     let db = Firestore.firestore()
     
     let myuid = Auth.auth().currentUser?.uid
     
-    db.collection("Owner").document(uid).collection("recents").document(myuid!).updateData(["lastmsg": lastmsg, "date": date])
+    let myname = UserDefaults.standard.value(forKey: "user") as! String
     
-     db.collection("User").document(myuid!).collection("recents").document(uid).updateData(["lastmsg":lastmsg, "date": date])
+    let mypic = UserDefaults.standard.value(forKey: "pic") as! String
+    
+    db.collection("Owner").document(uid).collection("recents").document(myuid!).updateData(["name": myname, "pic": mypic, "lastmsg": msg, "date": date])
+    
+    db.collection("User").document(myuid!).collection("recents").document(uid).updateData(["name": user, "pic": pic, "lastmsg": msg, "date": date])
 }
 
 func updateDB(uid: String,msg: String,date: Date) {

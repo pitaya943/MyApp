@@ -9,6 +9,7 @@ import SwiftUI
 import Firebase
 import SDWebImageSwiftUI
 import SwiftyJSON
+import Combine
 
 struct Profile: View {
     
@@ -17,6 +18,8 @@ struct Profile: View {
     // Imagepicker
     @State var showingImagePicker = false
     @State var showingNationalityPicker = false
+    @State var showingAgePicker = false
+    
     @State var imagedata : Data = .init(count: 0)
     // selected country
     @State var countryIndex = 0
@@ -25,11 +28,13 @@ struct Profile: View {
         
         VStack {
             
-            VStack {
+            VStack(spacing: 15) {
                 if datas.userDetail.pic != "" {
                     PicPresentation(url: datas.userDetail.pic, showingImagePicker: $showingImagePicker)
-                    Text(datas.userDetail.name)
                 }
+                
+                Text(datas.userDetail.name).fontWeight(.bold)
+                Text(datas.userDetail.about!)
                 
             }
             .padding()
@@ -38,15 +43,17 @@ struct Profile: View {
                 
                 Section(header: Text("關於我")) {
                     NavigationLink(
-                        destination: Text(datas.userDetail.name),
+                        destination: Modify(myInfo: datas.userDetail.name, target: "name").onDisappear(perform: {
+                            UserDefaults.standard.setValue(datas.userDetail.name, forKey: "user")
+                        }),
                         label: { NavigationLabel(tag: "我的名字", text: datas.userDetail.name) })
                     
                     NavigationLink(
-                        destination: Text(datas.userDetail.about!),
+                        destination: Modify(myInfo: datas.userDetail.about, target: "about"),
                         label: { NavigationLabel(tag: "我的狀態", text: datas.userDetail.about!) })
                     
                     NavigationLink(
-                        destination: Text(datas.userDetail.email!),
+                        destination: Modify(myInfo: datas.userDetail.email, target: "email"),
                         label: { NavigationLabel(tag: "E-mail", text: datas.userDetail.email!) })
                     
                     
@@ -55,23 +62,20 @@ struct Profile: View {
                 Button(action: { withAnimation(.default) { showingNationalityPicker.toggle() } }, label: { NavigationLabel(tag: "國籍", text: datas.userDetail.nationality!) })
                     .foregroundColor(.black)
                 
-//                NavigationLink(
-//                    destination: Nationality(),
-//                    label: { NavigationLabel(tag: "國籍", text: datas.userDetail.nationality!) })
+                Button(action: { withAnimation(.default) { showingAgePicker.toggle() } }, label: { NavigationLabel(tag: "年齡", text: datas.userDetail.age!) })
+                    .foregroundColor(.black)
                 
                 NavigationLink(
-                    destination: Text(datas.userDetail.age!),
-                    label: { NavigationLabel(tag: "年齡", text: datas.userDetail.age!) })
-                
-                NavigationLink(
-                    destination: Text(datas.userDetail.address!),
+                    destination: Modify(myInfo: datas.userDetail.address, target: "address"),
                     label: { NavigationLabel(tag: "住址", text: datas.userDetail.address!) })
                 
                 
                 Section(header: Text("")) {
-                    NavigationLink(
-                        destination: Text(datas.userDetail.phoneNumber),
-                        label: { NavigationLabel(tag: "電話號碼", text: datas.userDetail.phoneNumber) })
+                    HStack {
+                        Text("電話號碼")
+                        Spacer()
+                        Text(datas.userDetail.phoneNumber)
+                    }
                 }
                 
             }
@@ -82,6 +86,10 @@ struct Profile: View {
                     .onDisappear(perform: datas.updateNationaality)
             }
             
+            if showingAgePicker {
+                Age(myAge: $datas.userDetail.age, present: $showingAgePicker)
+                    .onDisappear(perform: datas.updateAge)
+            }
             
         }
         .sheet(isPresented: self.$showingImagePicker, onDismiss: { datas.setPicture(imagedata: imagedata) }, content: {
@@ -93,8 +101,7 @@ struct Profile: View {
 }
 
 struct NavigationLabel: View {
-    // Text all details
-    var textAll = ["E-mail", "電話號碼"]
+    
     var tag: String
     var text: String
     
@@ -104,9 +111,9 @@ struct NavigationLabel: View {
             Text(tag)
             Spacer()
             
-            if tag != textAll[0] && tag != textAll[1] && text.count > 6 {
+            if tag != "E-mail" && text.count > 15 {
                 
-                let output = text.prefix(6) + "..."
+                let output = text.prefix(15) + "..."
                 Text(output)
                     .foregroundColor(.black)
                     .opacity(0.6)
@@ -150,6 +157,46 @@ struct PicPresentation: View {
     }
 }
 
+struct Age: View {
+    
+    @Binding var myAge: String?
+    @Binding var present: Bool
+    @State private var ageIndex = 0
+    
+    var body: some View {
+        
+        VStack {
+            HStack {
+                Spacer()
+                Button(action: { withAnimation(.easeOut) { present.toggle() } }, label: {
+                    Text("確定")
+                })
+            }
+            .padding()
+            .background(Color.gray.opacity(0.2))
+            
+            Picker(selection: $ageIndex, label: Text("Age").hidden(), content: {
+                
+                ForEach(18..<80) { index in
+                    Text(String(index))
+                        .tag(index)
+                }
+                
+            })
+            .onDisappear(perform: setAge)
+        }
+        .onAppear(perform: getAgeIndex)
+    }
+    
+    func getAgeIndex() {
+        ageIndex = Int(myAge!) ?? 0 - 18
+    }
+    
+    func setAge() {
+        myAge = String(ageIndex + 18)
+    }
+}
+
 
 struct Nationality: View {
     
@@ -170,7 +217,7 @@ struct Nationality: View {
             .background(Color.gray.opacity(0.2))
 
             
-            Picker(selection: $countryIndex, label: Text("Country"), content: {
+            Picker(selection: $countryIndex, label: Text("Country").hidden(), content: {
                 
                 ForEach(0..<fetch().count) {
                     
@@ -212,11 +259,91 @@ struct Nationality: View {
     
 }
 
-
-struct Profile_Previews: PreviewProvider {
-    static var previews: some View {
-        Text("123")
-        //Nationality()
-        //Profile(datas: SelfProfile())
+struct Modify: View {
+    
+    @Environment(\.presentationMode) var present
+    @State var myInfo: String?
+    @State var content = ""
+    @State var textLimit = 30
+    var target: String
+    var targetTw = ["name": "我的名字", "about": "我的狀態", "email": "E-mail", "address": "我的住址"]
+    
+    var body: some View {
+        
+        VStack(alignment: .center, spacing: 15) {
+            
+            Spacer()
+            
+            VStack(alignment: .trailing, spacing: 0) {
+                
+                if target != "email" {
+                    Text("\(content.count)/\(textLimit)").foregroundColor(Color.black.opacity(0.4))
+                }
+                TextField("", text: $content)
+                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .keyboardType(target == "email" ? .emailAddress : .default)
+                    .onReceive(Just(content), perform: { _ in
+                        if target != "email" { limitText(textLimit) }
+                    })
+            }
+            
+            Spacer()
+            
+            Button(action: {
+                
+                updateContent(target: target)
+                present.wrappedValue.dismiss()
+                
+            }, label: {
+                Text("儲存")
+                    .font(.system(size: 20))
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+            })
+            .padding(.vertical)
+            .frame(width: UIScreen.main.bounds.width / 1.5)
+            .background(Color.blue)
+            .cornerRadius(15)
+        }
+        .frame(width: UIScreen.main.bounds.width / 1.5)
+        .padding(20)
+        .padding(.horizontal, 25)
+        .onAppear(perform: fetch)
+        .navigationTitle(targetTw[target]!)
+    }
+    
+    func limitText(_ upper: Int) {
+        if content.count > upper {
+            content = String(content.prefix(upper))
+        }
+    }
+    
+    func fetch() {
+        if myInfo != nil { content = myInfo! }
+        if target == "about" { textLimit = 50 }
+    }
+    
+    func updateContent(target: String) {
+        
+        let db = Firestore.firestore()
+        let uid = Auth.auth().currentUser?.uid
+        
+        let userRef = db.collection("User").document(uid!)
+        if myInfo != nil {
+            userRef.updateData([target : content]) { err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    print("Document successfully updated")
+                }
+            }
+            print("Content setting")
+        }
     }
 }
+
+//struct H_Previews: PreviewProvider {
+//    static var previews: some View {
+//        Modify()
+//    }
+//}

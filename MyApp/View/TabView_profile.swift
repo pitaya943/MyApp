@@ -32,7 +32,7 @@ struct TabView_profile: View {
         
         VStack {
             
-            VStack {
+            VStack(alignment: .center, spacing: 15) {
                 if datas.userDetail.pic != "" {
                     AnimatedImage(url: URL(string: datas.userDetail.pic)!)
                         .resizable()
@@ -40,7 +40,8 @@ struct TabView_profile: View {
                         .frame(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 3)
                         .clipShape(Circle())
                     
-                    Text(datas.userDetail.name)
+                    Text(datas.userDetail.name).fontWeight(.bold)
+                    Text(datas.userDetail.about!)
                 }
                 
             }.padding()
