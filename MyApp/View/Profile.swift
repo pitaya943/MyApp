@@ -161,7 +161,7 @@ struct Age: View {
     
     @Binding var myAge: String?
     @Binding var present: Bool
-    @State private var ageIndex = 0
+    @State private var ageIndex = 20
     
     var body: some View {
         
@@ -177,23 +177,23 @@ struct Age: View {
             
             Picker(selection: $ageIndex, label: Text("Age").hidden(), content: {
                 
-                ForEach(18..<80) { index in
+                ForEach(0..<81) { index in
                     Text(String(index))
                         .tag(index)
                 }
                 
             })
+            .onAppear(perform: getAgeIndex)
             .onDisappear(perform: setAge)
         }
-        .onAppear(perform: getAgeIndex)
     }
     
     func getAgeIndex() {
-        ageIndex = Int(myAge!) ?? 0 - 18
+        ageIndex = Int(myAge!) ?? 0
     }
     
     func setAge() {
-        myAge = String(ageIndex + 18)
+        myAge = String(ageIndex)
     }
 }
 
