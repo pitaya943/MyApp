@@ -11,18 +11,36 @@ import Firebase
 struct Home: View {
     
     @AppStorage("newMember") var newMember = false
+    @State var tabSelectedIndex = 0
+    
+    let numTabs = 2
+    let minDragTranslationForSwipe: CGFloat = 50
     
     var body: some View {
         
         ZStack {
             if newMember {
-                withAnimation(.default) { NewMember() }
+                NewMember()
             }
             else {
-                withAnimation(.default) { CustomTabBar() }
+                TabView(selection: $tabSelectedIndex) {
+                    MainView()
+                        .tag(0)
+                    NavigationView { MessageBox().environmentObject(ChatObservable()) }
+                        .tag(1)
+                }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             }
         }
     }
+            // MARK: - Swipe gesture
+//    private func handleSwipe(translation: CGFloat) {
+//            if translation > minDragTranslationForSwipe && tabSelectedIndex > 0 {
+//                tabSelectedIndex -= 1
+//            } else  if translation < -minDragTranslationForSwipe && tabSelectedIndex < numTabs - 1 {
+//                tabSelectedIndex += 1
+//            }
+//    }
     
 }
 
@@ -33,48 +51,33 @@ enum Tab {
     case home, recommend, notification, profile
 }
 
-struct CustomTabBar: View {
+struct MainView: View {
     
     @State private var selectedTab: Tab = .home
     
     var body: some View {
         
-        ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
+        TabView(selection: $selectedTab) {
             
-            NavigationView {
-                TabView(selection: $selectedTab) {
-                    
-                    TabView_home()
-                        .tabItem { NavigationLink(destination: TabView_home(), label: {
-                            TabButton(image: "home", title: "首頁")
-                        })}
-                        .tag(Tab.home)
-                        .navigationBarHidden(true)
-                    TabView_recommend()
-                        .tabItem { NavigationLink(destination: TabView_recommend(), label: {
-                            TabButton(image: "recommend", title: "推薦")
-                        })}
-                        .tag(Tab.recommend)
-                        .navigationBarHidden(true)
-                    TabView_notification()
-                        .tabItem { NavigationLink(destination: TabView_notification(), label: {
-                            TabButton(image: "notification", title: "通知")
-                        })}
-                        .tag(Tab.notification)
-                        .navigationBarHidden(true)
-                    TabView_profile()
-                        .tabItem { NavigationLink(destination: TabView_profile(), label: {
-                            TabButton(image: "profile", title: "個人資料")
-                        })}
-                        .tag(Tab.profile)
-                    
-                }
-                .ignoresSafeArea(.all, edges: .bottom)
-                .navigationBarTitle("我的帳戶", displayMode: .inline)
-                //.tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                
-            }
+            TabView_home()
+                .tabItem { TabButton(image: "home", title: "首頁") }
+                .tag(Tab.home)
+                .navigationBarHidden(true)
+            TabView_recommend()
+                .tabItem { TabButton(image: "recommend", title: "推薦") }
+                .tag(Tab.recommend)
+                .navigationBarHidden(true)
+            TabView_notification()
+                .tabItem { TabButton(image: "notification", title: "通知") }
+                .tag(Tab.notification)
+                .navigationBarHidden(true)
+            TabView_profile()
+                .tabItem { TabButton(image: "profile", title: "個人資料") }
+                .tag(Tab.profile)
+            
         }
+        .tabViewStyle(DefaultTabViewStyle())
+        
     }
 }
 

@@ -8,7 +8,6 @@
 import SwiftUI
 import Firebase
 import SDWebImageSwiftUI
-import SwiftyJSON
 import Combine
 
 struct Profile: View {
@@ -108,19 +107,19 @@ struct NavigationLabel: View {
     var body: some View {
         
         HStack {
-            Text(tag)
+            Text(tag).foregroundColor(.primary)
             Spacer()
             
             if tag != "E-mail" && text.count > 15 {
                 
                 let output = text.prefix(15) + "..."
                 Text(output)
-                    .foregroundColor(.black)
+                    .foregroundColor(.primary)
                     .opacity(0.6)
             }
             else {
                 Text(text)
-                    .foregroundColor(.black)
+                    .foregroundColor(.primary)
                     .opacity(0.6)
             }
             
@@ -272,8 +271,6 @@ struct Modify: View {
         
         VStack(alignment: .center, spacing: 15) {
             
-            Spacer()
-            
             VStack(alignment: .trailing, spacing: 0) {
                 
                 if target != "email" {
@@ -286,24 +283,22 @@ struct Modify: View {
                         if target != "email" { limitText(textLimit) }
                     })
             }
-            
-            Spacer()
-            
+                        
             Button(action: {
-                
                 updateContent(target: target)
                 present.wrappedValue.dismiss()
                 
             }, label: {
                 Text("儲存")
-                    .font(.system(size: 20))
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
+                    .font(.system(size: 15))
+                    .fontWeight(.medium)
+                    .foregroundColor(.primary)
+                    .padding(.vertical, 8)
+                    .frame(width: UIScreen.main.bounds.width / 1.5)
+                    .background(Color.blue)
+                    .cornerRadius(10)
             })
-            .padding(.vertical)
-            .frame(width: UIScreen.main.bounds.width / 1.5)
-            .background(Color.blue)
-            .cornerRadius(15)
+            
         }
         .frame(width: UIScreen.main.bounds.width / 1.5)
         .padding(20)

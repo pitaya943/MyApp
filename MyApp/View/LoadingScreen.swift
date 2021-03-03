@@ -12,7 +12,7 @@ struct LoadingScreen: View {
         
         ZStack {
             
-            Color.black.opacity(0.2).ignoresSafeArea(.all, edges: .all)
+            Color.primary.opacity(0.2).ignoresSafeArea(.all, edges: .all)
             
             ProgressView()
                 .padding(20)

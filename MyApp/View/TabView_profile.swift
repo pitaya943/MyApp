@@ -29,84 +29,82 @@ struct TabView_profile: View {
         
     var body: some View {
             
-        
-        VStack {
-            
-            VStack(alignment: .center, spacing: 15) {
-                if datas.userDetail.pic != "" {
-                    AnimatedImage(url: URL(string: datas.userDetail.pic)!)
-                        .resizable()
-                        .renderingMode(.original)
-                        .frame(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 3)
-                        .clipShape(Circle())
+        NavigationView {
+            VStack {
+                
+                VStack(spacing: 10) {
+                    if datas.userDetail.pic != "" {
+                        AnimatedImage(url: URL(string: datas.userDetail.pic)!)
+                            .resizable()
+                            .renderingMode(.original)
+                            .frame(width: UIScreen.main.bounds.width / 3, height: UIScreen.main.bounds.width / 3)
+                            .clipShape(Circle())
+                        
+                        Text(datas.userDetail.name).fontWeight(.bold)
+                        Text(datas.userDetail.about!)
+                    }
                     
-                    Text(datas.userDetail.name).fontWeight(.bold)
-                    Text(datas.userDetail.about!)
-                }
-                
-            }.padding()
-                            
-            List {
-                NavigationLink(destination: Profile(datas: datas)
-                                .navigationBarTitle(title[0], displayMode: .inline)){
-                    HStack {
-                        Image(systemName: "person.fill")
-                            .foregroundColor(.blue)
-                        Text(title[0]).offset(x: 5, y: 0)
+                }.padding(.top, 15)
+                                
+                List {
+                    NavigationLink(destination: Profile(datas: datas)
+                                    .navigationBarTitle(title[0], displayMode: .inline)){
+                        HStack {
+                            Image(systemName: "person.fill")
+                                .foregroundColor(.blue)
+                            Text(title[0]).offset(x: 5, y: 0)
+                        }
                     }
-                }
-                
-                // .environmentObject(ChatObservable())
-                NavigationLink(destination: MassageBox().environmentObject(ChatObservable())
-                                .navigationBarTitle(title[1], displayMode: .inline)){
-                    HStack {
-                        Image(systemName: "tray")
-                            .foregroundColor(.blue)
-                        Text(title[1]).offset(x: 5, y: 0)
+                    
+                    // MARK: - .environmentObject(ChatObservable())
+//                    NavigationLink(destination: MessageBox().environmentObject(ChatObservable())
+//                                    .navigationBarTitle(title[1], displayMode: .inline)){
+//                        HStack {
+//                            Image(systemName: "tray")
+//                                .foregroundColor(.blue)
+//                            Text(title[1]).offset(x: 5, y: 0)
+//                        }
+//                    }
+                    
+                    
+                    NavigationLink(destination: Collection()
+                                    .navigationBarTitle(title[2], displayMode: .inline)){
+                        HStack {
+                            Image(systemName: "heart.fill")
+                                .foregroundColor(.blue)
+                            Text(title[2]).offset(x: 5, y: 0)
+                        }
                     }
-                }
-                .navigationBarTitle(title[1], displayMode: .inline)
-                
-                
-                NavigationLink(destination: Collection()
-                                .navigationBarTitle(title[2], displayMode: .inline)){
-                    HStack {
-                        Image(systemName: "heart.fill")
-                            .foregroundColor(.blue)
-                        Text(title[2]).offset(x: 5, y: 0)
-                    }
-                }
-                .navigationBarTitle(title[2], displayMode: .inline)
 
-                
-                NavigationLink(destination: Record()
-                                .navigationBarTitle(title[3], displayMode: .inline)){
-                    HStack {
-                        Image(systemName: "square.and.pencil")
-                            .foregroundColor(.blue)
-                        Text(title[3]).offset(x: 5, y: 0)
+                    
+                    NavigationLink(destination: Record()
+                                    .navigationBarTitle(title[3], displayMode: .inline)){
+                        HStack {
+                            Image(systemName: "square.and.pencil")
+                                .foregroundColor(.blue)
+                            Text(title[3]).offset(x: 5, y: 0)
+                        }
                     }
-                }
-                .navigationBarTitle(title[3], displayMode: .inline)
 
-                
-                NavigationLink(destination: Setting()
-                                .navigationBarTitle(title[4], displayMode: .inline)){
-                    HStack {
-                        Image(systemName: "gearshape.fill")
-                            .foregroundColor(.blue)
-                        Text(title[4]).offset(x: 5, y: 0)
+                    
+                    NavigationLink(destination: Setting()
+                                    .navigationBarTitle(title[4], displayMode: .inline)){
+                        HStack {
+                            Image(systemName: "gearshape.fill")
+                                .foregroundColor(.blue)
+                            Text(title[4]).offset(x: 5, y: 0)
+                        }
                     }
-                }
-                .navigationBarTitle(title[4], displayMode: .inline)
 
-                
-                HStack { logoutButton(showingAlert: $showingAlert) }
-                .frame(width: UIScreen.main.bounds.width - 40)
+                    
+                    HStack { logoutButton(showingAlert: $showingAlert) }
+                    .frame(width: UIScreen.main.bounds.width - 40)
+                    
+                }
+                .listStyle(GroupedListStyle())
                 
             }
-            .listStyle(GroupedListStyle())
-            
+            .navigationBarTitle("個人資料", displayMode: .inline)
         }
         .alert(isPresented: $showingAlert) {
             Alert(title: Text(""), message: Text("確定要登出嗎？"), primaryButton: .destructive(Text("確定"), action: {

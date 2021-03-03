@@ -35,7 +35,7 @@
 		A9C5205E25E6A42000AEE181 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = A9C5205D25E6A42000AEE181 /* SDWebImageSwiftUI */; };
 		A9C5206125E6ACC100AEE181 /* TabView_recommend.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C5206025E6ACC100AEE181 /* TabView_recommend.swift */; };
 		A9C5206425E6ACFA00AEE181 /* TabView_notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C5206325E6ACFA00AEE181 /* TabView_notification.swift */; };
-		A9C5206825E6AE3A00AEE181 /* MassageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C5206725E6AE3A00AEE181 /* MassageBox.swift */; };
+		A9C5206825E6AE3A00AEE181 /* MessageBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C5206725E6AE3A00AEE181 /* MessageBox.swift */; };
 		A9C5206D25E6C06E00AEE181 /* GetAllOwners.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C5206C25E6C06E00AEE181 /* GetAllOwners.swift */; };
 		A9C5207025E6C84D00AEE181 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C5206F25E6C84D00AEE181 /* Indicator.swift */; };
 		A9C5207525E6D26700AEE181 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C5207425E6D26700AEE181 /* ChatView.swift */; };
@@ -43,8 +43,6 @@
 		A9F119A125E7FFF2007747DE /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F119A025E7FFF2007747DE /* Profile.swift */; };
 		A9F119A525E80189007747DE /* SelfProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F119A425E80189007747DE /* SelfProfile.swift */; };
 		A9F119AD25E82D34007747DE /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F119AC25E82D34007747DE /* ImagePicker.swift */; };
-		A9F119BF25E86E0E007747DE /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = A9F119BE25E86E0E007747DE /* SwiftyJSON */; };
-		A9F119C325E8775F007747DE /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = A9F119C225E8775F007747DE /* Alamofire */; };
 		A9F119C925E88689007747DE /* countryData.json in Resources */ = {isa = PBXBuildFile; fileRef = A9F119C825E88689007747DE /* countryData.json */; };
 		A9F119CC25E94149007747DE /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F119CB25E94149007747DE /* CustomSearchBar.swift */; };
 /* End PBXBuildFile section */
@@ -74,7 +72,7 @@
 		A9C5205925E69BCB00AEE181 /* Recent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recent.swift; sourceTree = "<group>"; };
 		A9C5206025E6ACC100AEE181 /* TabView_recommend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView_recommend.swift; sourceTree = "<group>"; };
 		A9C5206325E6ACFA00AEE181 /* TabView_notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView_notification.swift; sourceTree = "<group>"; };
-		A9C5206725E6AE3A00AEE181 /* MassageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MassageBox.swift; sourceTree = "<group>"; };
+		A9C5206725E6AE3A00AEE181 /* MessageBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBox.swift; sourceTree = "<group>"; };
 		A9C5206C25E6C06E00AEE181 /* GetAllOwners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllOwners.swift; sourceTree = "<group>"; };
 		A9C5206F25E6C84D00AEE181 /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
 		A9C5207425E6D26700AEE181 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
@@ -92,8 +90,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A9C5205E25E6A42000AEE181 /* SDWebImageSwiftUI in Frameworks */,
-				A9F119C325E8775F007747DE /* Alamofire in Frameworks */,
-				A9F119BF25E86E0E007747DE /* SwiftyJSON in Frameworks */,
 				A96BA08125E3392D00A8EC58 /* Lottie in Frameworks */,
 				A96BA11C25E3C76300A8EC58 /* FirebaseStorage in Frameworks */,
 				A96BA15425E4624C00A8EC58 /* FirebaseFirestoreSwift-Beta in Frameworks */,
@@ -184,7 +180,7 @@
 				A9C5206325E6ACFA00AEE181 /* TabView_notification.swift */,
 				A96BA16725E5651600A8EC58 /* TabView_profile.swift */,
 				A9F119A025E7FFF2007747DE /* Profile.swift */,
-				A9C5206725E6AE3A00AEE181 /* MassageBox.swift */,
+				A9C5206725E6AE3A00AEE181 /* MessageBox.swift */,
 				A9C5207425E6D26700AEE181 /* ChatView.swift */,
 				A96BA13125E3F92700A8EC58 /* LoadingScreen.swift */,
 				A96BA13725E4098500A8EC58 /* CustomNumberPad.swift */,
@@ -232,8 +228,6 @@
 				A96BA11B25E3C76300A8EC58 /* FirebaseStorage */,
 				A96BA15325E4624C00A8EC58 /* FirebaseFirestoreSwift-Beta */,
 				A9C5205D25E6A42000AEE181 /* SDWebImageSwiftUI */,
-				A9F119BE25E86E0E007747DE /* SwiftyJSON */,
-				A9F119C225E8775F007747DE /* Alamofire */,
 			);
 			productName = MyApp;
 			productReference = A96BA06C25E3366300A8EC58 /* MyApp.app */;
@@ -305,7 +299,7 @@
 				A96BA16825E5651600A8EC58 /* TabView_profile.swift in Sources */,
 				A9F119A525E80189007747DE /* SelfProfile.swift in Sources */,
 				A9C5207525E6D26700AEE181 /* ChatView.swift in Sources */,
-				A9C5206825E6AE3A00AEE181 /* MassageBox.swift in Sources */,
+				A9C5206825E6AE3A00AEE181 /* MessageBox.swift in Sources */,
 				A96BA12525E3CC3F00A8EC58 /* LoginViewModel.swift in Sources */,
 				A96BA12225E3CC2900A8EC58 /* Login.swift in Sources */,
 				A96BA15B25E487F100A8EC58 /* NewMember.swift in Sources */,
@@ -589,16 +583,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A9C5205C25E6A41F00AEE181 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
 			productName = SDWebImageSwiftUI;
-		};
-		A9F119BE25E86E0E007747DE /* SwiftyJSON */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A9F119BD25E86E0E007747DE /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
-			productName = SwiftyJSON;
-		};
-		A9F119C225E8775F007747DE /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A9F119C125E8775F007747DE /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

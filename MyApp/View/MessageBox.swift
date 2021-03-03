@@ -1,5 +1,5 @@
 //
-//  MassageBox.swift
+//  MessageBox.swift
 //  MyApp
 //
 //  Created by 阿揆 on 2021/2/24.
@@ -9,7 +9,7 @@ import SwiftUI
 import SDWebImageSwiftUI
 import Firebase
 
-struct MassageBox: View {
+struct MessageBox: View {
     
     @EnvironmentObject var datas: ChatObservable
     @State var show = false
@@ -56,15 +56,15 @@ struct MassageBox: View {
                     }
                 }
             }
-        }
-        .navigationBarTitle("訊息箱", displayMode: .inline)
-        .navigationBarItems(trailing: Button(action: { self.show.toggle() }, label: {
-            Image(systemName: "plus")
-                .resizable()
-                .frame(width: 20, height: 20)
-        }))
-        .sheet(isPresented: self.$show) {
-            newChatView(name: self.$name, uid: self.$id, pic: self.$pic, show: self.$show, chat: self.$chat)
+            .navigationBarTitle("訊息箱", displayMode: .inline)
+            .navigationBarItems(trailing: Button(action: { self.show.toggle() }, label: {
+                Image(systemName: "plus")
+                    .resizable()
+                    .frame(width: 20, height: 20)
+            }))
+            .sheet(isPresented: self.$show) {
+                newChatView(name: self.$name, uid: self.$id, pic: self.$pic, show: self.$show, chat: self.$chat)
+            }
         }
     }
 }
