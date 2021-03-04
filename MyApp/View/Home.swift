@@ -27,6 +27,7 @@ struct Home: View {
                     MainView()
                         .tag(0)
                     NavigationView { MessageBox().environmentObject(ChatObservable()) }
+                        .navigationViewStyle(StackNavigationViewStyle())
                         .tag(1)
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))

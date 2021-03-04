@@ -61,11 +61,13 @@ struct MessageBox: View {
                 Image(systemName: "plus")
                     .resizable()
                     .frame(width: 20, height: 20)
+                Spacer(minLength: 20)
             }))
             .sheet(isPresented: self.$show) {
                 newChatView(name: self.$name, uid: self.$id, pic: self.$pic, show: self.$show, chat: self.$chat)
             }
         }
+        .padding(.top, 35)
     }
 }
 

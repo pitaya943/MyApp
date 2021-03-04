@@ -106,6 +106,7 @@ class LoginViewModel: ObservableObject {
         // Disabling App Verification...
         // Undo it while testing with live Phone....
         Auth.auth().settings?.isAppVerificationDisabledForTesting = true
+        
         loading = true
         let number = "+\(getCountryCode())\(phNumber)"
         PhoneAuthProvider.provider().verifyPhoneNumber(number, uiDelegate: nil) { (CODE, err) in
@@ -114,6 +115,7 @@ class LoginViewModel: ObservableObject {
                 
                 self.errorMsg = error.localizedDescription
                 withAnimation{ self.error.toggle() }
+                self.loading.toggle()
                 return
             }
             self.CODE = CODE ?? ""

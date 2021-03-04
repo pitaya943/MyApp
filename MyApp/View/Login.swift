@@ -16,7 +16,7 @@ struct Login: View {
                         
             VStack {
                 Color.black
-                Color.black.opacity(0.1)
+                Color("loginBackground")
             }
             VStack {
                 
@@ -38,6 +38,7 @@ struct Login: View {
                                 .foregroundColor(Color.gray)
                             
                             Text("+ \(accountCreation.getCountryCode()) \(accountCreation.phNumber)")
+                                .foregroundColor(Color.black)
                                 .font(.title2)
                                 .fontWeight(.bold)
                         }

@@ -10,8 +10,11 @@ import Firebase
 
 @main
 struct MyAppApp: App {
+    
     @UIApplicationDelegateAdaptor(Delegate.self) var delegate
+
     var body: some Scene {
+        
         WindowGroup {
             ContentView()
         }

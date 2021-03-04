@@ -15,7 +15,11 @@ struct Verification: View {
     var body: some View {
         
         ZStack {
-            Color.black.opacity(0.1).ignoresSafeArea(.all, edges: .bottom)
+            VStack {
+                Color.white
+                Color("loginBackground")
+            }.ignoresSafeArea(.all, edges: .all)
+            
             VStack {
                 VStack {
                     HStack {

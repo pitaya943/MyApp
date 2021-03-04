@@ -23,33 +23,26 @@ struct ChatView : View {
         VStack {
             
             if msgs.count == 0 {
-                
                 if self.nomsgs {
                     
                     Text("開始聊天吧")
                         .foregroundColor(Color.black.opacity(0.5))
                         .padding(.top)
-                    
                     Spacer()
                 }
                 else {
-                    
                     Spacer()
                     Indicator()
                     Spacer()
                 }
-
-                
             }
             else {
-                
                 ScrollView(.vertical, showsIndicators: false) {
-                    
                     VStack(spacing: 8) {
                         
                         ForEach(self.msgs) { i in
+                            
                             HStack {
-                                
                                 if i.user == UserDefaults.standard.value(forKey: "uid") as! String {
                                     
                                     Spacer()
@@ -83,9 +76,12 @@ struct ChatView : View {
                         // toggling image picker
                         
                     }, label: {
-                        Image(systemName: "paperclip.circle.fill")
-                            .font(.system(size: 30))
-                            .foregroundColor(.blue)
+                        Image(systemName: "paperclip")
+                            .font(.system(size: 18))
+                            .foregroundColor(.white)
+                            .frame(width: 35, height: 35)
+                            .background(Color.blue)
+                            .clipShape(Circle())
                     })
                     
                     TextField("訊息", text: self.$txt)
@@ -102,7 +98,7 @@ struct ChatView : View {
                             Image(systemName: "paperplane.fill")
                                 .font(.system(size: 18))
                                 .foregroundColor(.white)
-                                .frame(width: 40, height: 40)
+                                .frame(width: 35, height: 35)
                                 .background(Color.blue)
                                 .clipShape(Circle())
                         }
@@ -112,20 +108,21 @@ struct ChatView : View {
                 .padding(.horizontal)
                 .frame(height: 60)
                 .clipShape(Capsule())
-                .background(Color.white)
                 .animation(.default)
                 
             }
+            .background(Color.primary.opacity(0.06))
         }
         .navigationBarTitle("\(name)",displayMode: .inline)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: Button(action: { self.chat.toggle() }, label: {
-            
+                Spacer(minLength: 20)
                 Image(systemName: "arrow.left").resizable().frame(width: 20, height: 15)
                 
             }))
-        .background(Color.black.opacity(0.06))
+        .background(Color.primary.opacity(0.06))
         .onAppear { self.getMsgs() }
+        .padding(.top, 40)
     }
     
     func getMsgs(){

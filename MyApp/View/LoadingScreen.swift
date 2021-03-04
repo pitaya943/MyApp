@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct LoadingScreen: View {
+    
     var body: some View {
         
         ZStack {
             
-            Color.primary.opacity(0.2).ignoresSafeArea(.all, edges: .all)
+            Color.black.opacity(0.2).ignoresSafeArea(.all, edges: .all)
             
             ProgressView()
                 .padding(20)
-                .background(Color.white)
+                .background(Color.gray)
                 .cornerRadius(10)
         }
     }
