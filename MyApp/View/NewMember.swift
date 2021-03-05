@@ -11,7 +11,6 @@ import FirebaseFirestoreSwift
 
 struct NewMember: View {
     
-
     var body: some View {
         WalkthroughScreen()
     }
@@ -38,12 +37,13 @@ struct WalkthroughScreen: View {
             }
             if page == 2 {
                 
-                ScreenView(image: "image2", title: "工作、壓力", detail: "走出繁忙都市生活\n 享受慢步調的鄉村生活\n 認識來自各個地方的人們", bgColor: Color.blue)
+                ScreenView(image: "image2", title: "工作、壓力", detail: "走出繁忙都市生活\n 享受慢步調的鄉村生活\n 認識來自各個地方的人們", bgColor: "secondBack")
                     .transition(.scale)
             }
             if page == 3 {
                 
-                ScreenView(image: "image3", title: "挑戰自我", detail: "開始尋找快樂吧\n 開始在臺灣四處旅行吧 \n Live a live you will remember !", bgColor: Color.purple)                    .transition(.scale)
+                ScreenView(image: "image3", title: "挑戰自我", detail: "開始尋找快樂吧\n 開始在臺灣四處旅行吧 \n Live a live you will remember !", bgColor: "thirdBack")
+                    .transition(.scale)
             }
         }
         .overlay(
@@ -141,18 +141,20 @@ struct FirstView: View {
                     .multilineTextAlignment(.center)
                     .foregroundColor(.black).opacity(0.7)
                 
+                // MARK: - Dark mode textfeild text color is white
                 VStack {
                     TextField("  請輸入", text: $user)
                         .frame(width: UIScreen.main.bounds.width / 2, height: 35, alignment: .center)
                 }
                 .padding()
                 .background(Color.white)
+                .cornerRadius(8)
             }
             
             Spacer(minLength: 120)
             
         }
-        .background(Color.yellow.opacity(0.55).cornerRadius(10).ignoresSafeArea())
+        .background(Color("firstBack").cornerRadius(10).ignoresSafeArea())
     }
 }
 
@@ -161,7 +163,7 @@ struct ScreenView: View {
     var image: String
     var title: String
     var detail: String
-    var bgColor: Color
+    var bgColor: String
     
     @AppStorage("user") var user = ""
     @AppStorage("uid") var uid = ""
@@ -227,7 +229,7 @@ struct ScreenView: View {
             Spacer(minLength: 120)
             
         }
-        .background(bgColor.opacity(0.7).cornerRadius(10).ignoresSafeArea())
+        .background(Color(bgColor).cornerRadius(10).ignoresSafeArea())
     }
     
     func updateNewMemberName() {

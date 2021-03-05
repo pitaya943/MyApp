@@ -20,54 +20,54 @@ struct MessageBox: View {
     
     var body: some View {
         
-        ZStack {
-            
-            NavigationLink(destination: ChatView(name: self.name, pic: self.pic, uid: self.id, chat: self.$chat), isActive: self.$chat) { Text("") }
-            
-            VStack{
-                if self.datas.recents.count == 0 {
-                    
-                    if self.datas.norecetns {
-                        Text("沒有聊天記錄")
-                    }
-                    else { Indicator() }
-                }
-                else {
-                    
-                    ScrollView(.vertical, showsIndicators: false) {
+        NavigationView {
+        
+            ZStack {
+                
+                NavigationLink(destination: ChatView(name: self.name, pic: self.pic, uid: self.id, chat: self.$chat).transition(.scale), isActive: self.$chat) { Text("") }
+                
+                VStack{
+                    if self.datas.recents.count == 0 {
                         
-                        VStack(spacing: 12){
+                        if self.datas.norecetns {
+                            Text("沒有聊天記錄")
+                        }
+                        else { Indicator() }
+                    }
+                    else {
+                        
+                        ScrollView(.vertical, showsIndicators: false) {
                             
-                            ForEach(datas.recents.sorted(by: {$0.stamp > $1.stamp})) { i in
+                            VStack(spacing: 12) {
                                 
-                                Button(action: {
+                                ForEach(datas.recents.sorted(by: {$0.stamp > $1.stamp})) { i in
                                     
-                                    self.id = i.id
-                                    self.name = i.name
-                                    self.pic = i.pic
-                                    self.chat.toggle()
-                                    
-                                }) {
-                                    RecentCellView(url: i.pic, name: i.name, time: i.time, date: i.date, lastmsg: i.lastmsg)
+                                    Button(action: {
+                                            self.id = i.id
+                                            self.name = i.name
+                                            self.pic = i.pic
+                                            self.chat.toggle()
+                                        
+                                    }) {
+                                        RecentCellView(url: i.pic, name: i.name, time: i.time, date: i.date, lastmsg: i.lastmsg)
+                                    }
                                 }
                             }
+                            .padding()
                         }
-                        .padding()
                     }
                 }
-            }
-            .navigationBarTitle("訊息箱", displayMode: .inline)
-            .navigationBarItems(trailing: Button(action: { self.show.toggle() }, label: {
-                Image(systemName: "plus")
-                    .resizable()
-                    .frame(width: 20, height: 20)
-                Spacer(minLength: 20)
-            }))
-            .sheet(isPresented: self.$show) {
-                newChatView(name: self.$name, uid: self.$id, pic: self.$pic, show: self.$show, chat: self.$chat)
+                .navigationBarTitle("訊息箱", displayMode: .inline)
+                .navigationBarItems(trailing: Button(action: { self.show.toggle() }, label: {
+                    Image(systemName: "plus")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                }))
+                .sheet(isPresented: self.$show) {
+                    newChatView(name: self.$name, uid: self.$id, pic: self.$pic, show: self.$show, chat: self.$chat)
+                }
             }
         }
-        .padding(.top, 35)
     }
 }
 
@@ -95,7 +95,7 @@ struct RecentCellView : View {
                     
                     VStack(alignment: .leading, spacing: 6) {
                         
-                        Text(name).foregroundColor(.black)
+                        Text(name).foregroundColor(.primary)
                         Text(lastmsg).foregroundColor(.gray)
                     }
                     

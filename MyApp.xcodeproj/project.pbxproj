@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A90A8C6125F190C800550F41 /* ViewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90A8C6025F190C800550F41 /* ViewRouter.swift */; };
+		A90A8C6425F1913D00550F41 /* MotherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90A8C6325F1913D00550F41 /* MotherView.swift */; };
+		A90A8C6825F2710B00550F41 /* ScrollableTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90A8C6725F2710B00550F41 /* ScrollableTabBar.swift */; };
+		A90A8C6C25F2860A00550F41 /* TabBarAccessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90A8C6B25F2860A00550F41 /* TabBarAccessor.swift */; };
+		A90A8C8C25F2B34C00550F41 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A90A8C8B25F2B34C00550F41 /* SearchBar.swift */; };
 		A96BA07025E3366300A8EC58 /* MyAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BA06F25E3366300A8EC58 /* MyAppApp.swift */; };
 		A96BA07225E3366300A8EC58 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96BA07125E3366300A8EC58 /* ContentView.swift */; };
 		A96BA07425E3366500A8EC58 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A96BA07325E3366500A8EC58 /* Assets.xcassets */; };
@@ -44,10 +49,14 @@
 		A9F119A525E80189007747DE /* SelfProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F119A425E80189007747DE /* SelfProfile.swift */; };
 		A9F119AD25E82D34007747DE /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F119AC25E82D34007747DE /* ImagePicker.swift */; };
 		A9F119C925E88689007747DE /* countryData.json in Resources */ = {isa = PBXBuildFile; fileRef = A9F119C825E88689007747DE /* countryData.json */; };
-		A9F119CC25E94149007747DE /* CustomSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F119CB25E94149007747DE /* CustomSearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A90A8C6025F190C800550F41 /* ViewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRouter.swift; sourceTree = "<group>"; };
+		A90A8C6325F1913D00550F41 /* MotherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotherView.swift; sourceTree = "<group>"; };
+		A90A8C6725F2710B00550F41 /* ScrollableTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableTabBar.swift; sourceTree = "<group>"; };
+		A90A8C6B25F2860A00550F41 /* TabBarAccessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAccessor.swift; sourceTree = "<group>"; };
+		A90A8C8B25F2B34C00550F41 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		A96BA06C25E3366300A8EC58 /* MyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A96BA06F25E3366300A8EC58 /* MyAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAppApp.swift; sourceTree = "<group>"; };
 		A96BA07125E3366300A8EC58 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -81,7 +90,6 @@
 		A9F119A425E80189007747DE /* SelfProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfProfile.swift; sourceTree = "<group>"; };
 		A9F119AC25E82D34007747DE /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		A9F119C825E88689007747DE /* countryData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countryData.json; sourceTree = "<group>"; };
-		A9F119CB25E94149007747DE /* CustomSearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +134,7 @@
 				A96BA08E25E33D7800A8EC58 /* View */,
 				A96BA08D25E33D7100A8EC58 /* ViewModel */,
 				A96BA06F25E3366300A8EC58 /* MyAppApp.swift */,
+				A90A8C6325F1913D00550F41 /* MotherView.swift */,
 				A96BA07125E3366300A8EC58 /* ContentView.swift */,
 				A96BA08325E3394700A8EC58 /* LottieView.swift */,
 				A9F119C825E88689007747DE /* countryData.json */,
@@ -183,6 +192,7 @@
 				A9C5206725E6AE3A00AEE181 /* MessageBox.swift */,
 				A9C5207425E6D26700AEE181 /* ChatView.swift */,
 				A96BA13125E3F92700A8EC58 /* LoadingScreen.swift */,
+				A90A8C6725F2710B00550F41 /* ScrollableTabBar.swift */,
 				A96BA13725E4098500A8EC58 /* CustomNumberPad.swift */,
 			);
 			path = View;
@@ -191,9 +201,11 @@
 		A96BA10E25E34DD100A8EC58 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				A90A8C6025F190C800550F41 /* ViewRouter.swift */,
 				A9C5206F25E6C84D00AEE181 /* Indicator.swift */,
 				A9F119AC25E82D34007747DE /* ImagePicker.swift */,
-				A9F119CB25E94149007747DE /* CustomSearchBar.swift */,
+				A90A8C6B25F2860A00550F41 /* TabBarAccessor.swift */,
+				A90A8C8B25F2B34C00550F41 /* SearchBar.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -302,13 +314,17 @@
 				A9C5206825E6AE3A00AEE181 /* MessageBox.swift in Sources */,
 				A96BA12525E3CC3F00A8EC58 /* LoginViewModel.swift in Sources */,
 				A96BA12225E3CC2900A8EC58 /* Login.swift in Sources */,
+				A90A8C6425F1913D00550F41 /* MotherView.swift in Sources */,
 				A96BA15B25E487F100A8EC58 /* NewMember.swift in Sources */,
+				A90A8C6825F2710B00550F41 /* ScrollableTabBar.swift in Sources */,
 				A96BA07225E3366300A8EC58 /* ContentView.swift in Sources */,
 				A96BA14B25E44B2800A8EC58 /* Home.swift in Sources */,
 				A9F119AD25E82D34007747DE /* ImagePicker.swift in Sources */,
-				A9F119CC25E94149007747DE /* CustomSearchBar.swift in Sources */,
+				A90A8C6C25F2860A00550F41 /* TabBarAccessor.swift in Sources */,
+				A90A8C6125F190C800550F41 /* ViewRouter.swift in Sources */,
 				A96BA07025E3366300A8EC58 /* MyAppApp.swift in Sources */,
 				A9C5206125E6ACC100AEE181 /* TabView_recommend.swift in Sources */,
+				A90A8C8C25F2B34C00550F41 /* SearchBar.swift in Sources */,
 				A96BA13525E4049200A8EC58 /* Countries.swift in Sources */,
 				A9C5207025E6C84D00AEE181 /* Indicator.swift in Sources */,
 				A96BA13225E3F92700A8EC58 /* LoadingScreen.swift in Sources */,

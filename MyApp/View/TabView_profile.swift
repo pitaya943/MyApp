@@ -22,7 +22,9 @@ struct TabView_profile: View {
     @AppStorage("pic") var pic = ""
     @AppStorage("user") var user = ""
     @AppStorage("log_Status") var status = false
+    
     @State private var showingAlert = false
+    @State private var tabBar: UITabBar! = nil
     
     var pic2 = "https://kb.rspca.org.au/wp-content/uploads/2018/11/golder-retriever-puppy.jpeg"
     var title = ["基本資料設定", "訊息箱", "已收藏", "換宿紀錄", "設定"]
@@ -48,7 +50,9 @@ struct TabView_profile: View {
                                 
                 List {
                     NavigationLink(destination: Profile(datas: datas)
-                                    .navigationBarTitle(title[0], displayMode: .inline)){
+                                    .navigationBarTitle(title[0], displayMode: .inline)
+                                    .onAppear { self.tabBar.isHidden = true }
+                                    .onDisappear { self.tabBar.isHidden = false }){
                         HStack {
                             Image(systemName: "person.fill")
                                 .foregroundColor(.blue)
@@ -68,7 +72,9 @@ struct TabView_profile: View {
                     
                     
                     NavigationLink(destination: Collection()
-                                    .navigationBarTitle(title[2], displayMode: .inline)){
+                                    .navigationBarTitle(title[2], displayMode: .inline)
+                                    .onAppear { self.tabBar.isHidden = true }
+                                    .onDisappear { self.tabBar.isHidden = false }){
                         HStack {
                             Image(systemName: "heart.fill")
                                 .foregroundColor(.blue)
@@ -78,7 +84,9 @@ struct TabView_profile: View {
 
                     
                     NavigationLink(destination: Record()
-                                    .navigationBarTitle(title[3], displayMode: .inline)){
+                                    .navigationBarTitle(title[3], displayMode: .inline)
+                                    .onAppear { self.tabBar.isHidden = true }
+                                    .onDisappear { self.tabBar.isHidden = false }){
                         HStack {
                             Image(systemName: "square.and.pencil")
                                 .foregroundColor(.blue)
@@ -88,7 +96,9 @@ struct TabView_profile: View {
 
                     
                     NavigationLink(destination: Setting()
-                                    .navigationBarTitle(title[4], displayMode: .inline)){
+                                    .navigationBarTitle(title[4], displayMode: .inline)
+                                    .onAppear { self.tabBar.isHidden = true }
+                                    .onDisappear { self.tabBar.isHidden = false }){
                         HStack {
                             Image(systemName: "gearshape.fill")
                                 .foregroundColor(.blue)
@@ -111,6 +121,8 @@ struct TabView_profile: View {
                 logoutRequest()
             }), secondaryButton: .cancel(Text("取消"), action: { print("Logout alert cancel") }))
         }
+        .background(TabBarAccessor { tabbar in
+                    self.tabBar = tabbar })
 
     }
     

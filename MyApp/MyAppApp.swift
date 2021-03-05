@@ -12,11 +12,14 @@ import Firebase
 struct MyAppApp: App {
     
     @UIApplicationDelegateAdaptor(Delegate.self) var delegate
+    @StateObject var viewRouter = ViewRouter()
 
     var body: some Scene {
         
         WindowGroup {
-            ContentView()
+            MotherView()
+                .environmentObject(viewRouter)
+                .preferredColorScheme(.light)
         }
     }
 }

@@ -10,6 +10,7 @@ import SwiftUI
 struct Login: View {
     
     @StateObject var accountCreation = LoginViewModel()
+    
     var body: some View {
         
         ZStack {

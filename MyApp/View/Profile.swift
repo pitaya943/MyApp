@@ -80,11 +80,6 @@ struct Profile: View {
             }
             .listStyle(GroupedListStyle())
             
-            if showingNationalityPicker {
-                Nationality(present: $showingNationalityPicker, myNationality: $datas.userDetail.nationality)
-                    .onDisappear(perform: datas.updateNationaality)
-            }
-            
             if showingAgePicker {
                 Age(myAge: $datas.userDetail.age, present: $showingAgePicker)
                     .onDisappear(perform: datas.updateAge)
@@ -94,7 +89,11 @@ struct Profile: View {
         .sheet(isPresented: self.$showingImagePicker, onDismiss: { datas.setPicture(imagedata: imagedata) }, content: {
             ImagePicker(picker: self.$showingImagePicker, imagedata: $imagedata)
         })
-        
+        .sheet(isPresented: $showingNationalityPicker, content: {
+            Nationality(myNationality: $datas.userDetail.nationality, present: $showingNationalityPicker)
+                .transition(.slide)
+                .onDisappear(perform: datas.updateNationaality)
+        })
         
     }
 }
@@ -188,7 +187,7 @@ struct Age: View {
     }
     
     func getAgeIndex() {
-        ageIndex = Int(myAge!) ?? 0
+        ageIndex = Int(myAge!) ?? 20
     }
     
     func setAge() {
@@ -200,49 +199,55 @@ struct Age: View {
 struct Nationality: View {
     
     @State private var countryIndex = 0
-    @Binding var present: Bool
+    @State var text = ""
     @Binding var myNationality: String?
+    @Binding var present: Bool
+    
+    var array = [Countries]()
     
     var body: some View {
         
-        VStack(spacing: 0) {
-            HStack {
-                Spacer()
-                Button(action: { withAnimation(.easeOut) { present.toggle() } }, label: {
-                    Text("確定")
-                })
-            }
-            .padding()
-            .background(Color.gray.opacity(0.2))
+        VStack(alignment: .leading, spacing: 12) {
+            
+            Text("請選擇你的國家")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .foregroundColor(Color.primary)
+            
+            SearchBar(text: $text)
+            
+            List {
+                ForEach(fetch().filter { text.isEmpty ? true : $0.en.contains(text) }, id: \.self) { index in
 
-            
-            Picker(selection: $countryIndex, label: Text("Country").hidden(), content: {
-                
-                ForEach(0..<fetch().count) {
-                    
-                    Text("\(fetch()[$0].tw)")
-                        .tag($0)
+                    Button(action: {
+
+                        present.toggle()
+                        myNationality = index.tw
+
+                    }) {
+
+                        HStack {
+                            VStack(alignment: .leading) {
+                                Text("\(index.tw)")
+                                Text("\(index.en)")
+                                    .font(.caption)
+                                    .foregroundColor(Color.primary.opacity(0.5))
+                            }
+
+                            Spacer()
+
+                            if myNationality == index.tw {
+                                Image(systemName: "checkmark").foregroundColor(.blue)
+                            }
+                        }
+                        .padding(5)
+                    }
                 }
-                
-            }).onDisappear(perform: setNationality)
-        }
-        .onAppear(perform: setCountryIndex)
-        
-    }
-    
-    func setCountryIndex() {
-        
-        for index in 0..<fetch().count {
-            
-            if fetch()[index].tw == myNationality {
-                countryIndex = index
             }
-                
+            
         }
-    }
-    
-    func setNationality() {
-        myNationality = fetch()[countryIndex].tw
+        .padding()
+        
     }
     
     func fetch() -> [Countries] {
@@ -292,7 +297,7 @@ struct Modify: View {
                 Text("儲存")
                     .font(.system(size: 15))
                     .fontWeight(.medium)
-                    .foregroundColor(.primary)
+                    .foregroundColor(.white)
                     .padding(.vertical, 8)
                     .frame(width: UIScreen.main.bounds.width / 1.5)
                     .background(Color.blue)

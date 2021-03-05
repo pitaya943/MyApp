@@ -10,55 +10,23 @@ import SwiftUI
 struct ContentView: View {
     
     @AppStorage("log_Status") var status = false
-    @State var timeRemaining = 3
-    @State var isStart = false
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @AppStorage("newMember") var newMember = false
     
     var body: some View {
         
-        if isStart {
-            if status {
-                Home()
+        if status {
+            if newMember {
+                NewMember()
+                
             }
             else {
-                NavigationView { Login() }
+                Home()
             }
         }
         else {
-            CoverView()
-                .onReceive(timer) { _ in
-                    if self.timeRemaining > 0 {
-                        self.timeRemaining -= 1
-                    }
-                    if self.timeRemaining == 0 {
-                        isStart.toggle()
-                    }
-                }
+            NavigationView { Login() }
         }
-    }
-}
-
-struct CoverView: View {
-    
-    var body: some View {
         
-        ZStack {
-            
-            Image("cover")
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea(.all, edges: .all)
-            
-            ZStack {
-                Color.white
-                    .opacity(0.7)
-                    .frame(width: 500, height: 50, alignment: .center)
-                Text("Welcome")
-                    .font(.largeTitle)
-                    .foregroundColor(.black)
-                
-            }
-        }
     }
 }
 

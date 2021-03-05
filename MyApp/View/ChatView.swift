@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import SDWebImageSwiftUI
 
 struct ChatView : View {
     
@@ -17,6 +18,7 @@ struct ChatView : View {
     @State var msgs = [Msg]()
     @State var txt = ""
     @State var nomsgs = false
+    let myPic = UserDefaults.standard.value(forKey: "pic")
     
     var body : some View {
         
@@ -38,11 +40,12 @@ struct ChatView : View {
             }
             else {
                 ScrollView(.vertical, showsIndicators: false) {
-                    VStack(spacing: 8) {
+                    VStack(spacing: 12) {
                         
                         ForEach(self.msgs) { i in
                             
                             HStack {
+                                
                                 if i.user == UserDefaults.standard.value(forKey: "uid") as! String {
                                     
                                     Spacer()
@@ -52,8 +55,21 @@ struct ChatView : View {
                                         .background(Color.blue)
                                         .clipShape(ChatBubble(mymsg: true))
                                         .foregroundColor(.white)
+                                    
+                                    AnimatedImage(url: URL(string: myPic as! String))
+                                        .resizable()
+                                        .renderingMode(.original)
+                                        .frame(width: 55, height: 55)
+                                        .clipShape(Circle())
                                 }
                                 else {
+                                    
+                                    AnimatedImage(url: URL(string: pic)!)
+                                        .resizable()
+                                        .renderingMode(.original)
+                                        .frame(width: 55, height: 55)
+                                        .clipShape(Circle())
+                                    
                                     Text(i.msg)
                                         .padding()
                                         .background(Color.green)
@@ -84,8 +100,7 @@ struct ChatView : View {
                             .clipShape(Circle())
                     })
                     
-                    TextField("訊息", text: self.$txt)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                    TextField("訊息...", text: self.$txt)
                     
                     if self.txt != "" {
                         Button(action: {
@@ -105,24 +120,25 @@ struct ChatView : View {
                     }
                     
                 }
-                .padding(.horizontal)
-                .frame(height: 60)
+                .padding()
+                .frame(height: 45)
                 .clipShape(Capsule())
                 .animation(.default)
-                
+                .cornerRadius(30)
+                .overlay(RoundedRectangle(cornerRadius: 30).stroke(Color.secondary, lineWidth: 0.5))
             }
-            .background(Color.primary.opacity(0.06))
+            .padding(20)
+            .ignoresSafeArea(.all, edges: .bottom)
         }
         .navigationBarTitle("\(name)",displayMode: .inline)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: Button(action: { self.chat.toggle() }, label: {
-                Spacer(minLength: 20)
                 Image(systemName: "arrow.left").resizable().frame(width: 20, height: 15)
                 
             }))
         .background(Color.primary.opacity(0.06))
+        .ignoresSafeArea(.all, edges: .bottom)
         .onAppear { self.getMsgs() }
-        .padding(.top, 40)
     }
     
     func getMsgs(){

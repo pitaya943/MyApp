@@ -9,7 +9,6 @@ import SwiftUI
 
 struct Countries: Hashable, Codable {
     
-//    var id: String
     var tw: String
     var en: String
     var emoji: String
