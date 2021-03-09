@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
-struct Msg : Identifiable {
+struct Msg : Identifiable, Hashable {
     
-    var id : String
+    @DocumentID var id: String?
     var msg : String
     var user : String
 }

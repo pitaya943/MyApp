@@ -25,7 +25,7 @@ struct Profile: View {
 
     var body: some View {
         
-        VStack {
+        VStack(spacing: 0) {
             
             VStack(spacing: 15) {
                 if datas.userDetail.pic != "" {
@@ -61,7 +61,7 @@ struct Profile: View {
                 Button(action: { withAnimation(.default) { showingNationalityPicker.toggle() } }, label: { NavigationLabel(tag: "國籍", text: datas.userDetail.nationality!) })
                     .foregroundColor(.black)
                 
-                Button(action: { withAnimation(.default) { showingAgePicker.toggle() } }, label: { NavigationLabel(tag: "年齡", text: datas.userDetail.age!) })
+                Button(action: { withAnimation { showingAgePicker.toggle() } }, label: { NavigationLabel(tag: "年齡", text: datas.userDetail.age!) })
                     .foregroundColor(.black)
                 
                 NavigationLink(
@@ -83,9 +83,11 @@ struct Profile: View {
             if showingAgePicker {
                 Age(myAge: $datas.userDetail.age, present: $showingAgePicker)
                     .onDisappear(perform: datas.updateAge)
+                    .transition(.move(edge: .bottom))
             }
             
         }
+        .ignoresSafeArea(.all, edges: .bottom)
         .sheet(isPresented: self.$showingImagePicker, onDismiss: { datas.setPicture(imagedata: imagedata) }, content: {
             ImagePicker(picker: self.$showingImagePicker, imagedata: $imagedata)
         })
@@ -166,12 +168,12 @@ struct Age: View {
         VStack {
             HStack {
                 Spacer()
-                Button(action: { withAnimation(.easeOut) { present.toggle() } }, label: {
+                Button(action: { withAnimation { present.toggle() } }, label: {
                     Text("確定")
                 })
             }
             .padding()
-            .background(Color.gray.opacity(0.2))
+            .background(Color.gray.opacity(0.15))
             
             Picker(selection: $ageIndex, label: Text("Age").hidden(), content: {
                 

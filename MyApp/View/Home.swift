@@ -12,11 +12,11 @@ var tabs = ["mainView", "messageBox"]
 
 struct Home: View {
     
-    @State var tabSelectedIndex = 0
+//    @State var tabSelectedIndex = 0
     @State var offset: CGFloat = 0
     
-    let numTabs = 2
-    let minDragTranslationForSwipe: CGFloat = 50
+//    let numTabs = 2
+//    let minDragTranslationForSwipe: CGFloat = 50
     
     var body: some View {
         

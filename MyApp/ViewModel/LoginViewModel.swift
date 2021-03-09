@@ -30,7 +30,7 @@ class LoginViewModel: ObservableObject {
     // OTP Credentials
     @Published var CODE = ""
     
-    // Loading screen
+    // Go to verify screen
     @Published var goToVerify = false
     
     // User logged status
@@ -60,7 +60,7 @@ class LoginViewModel: ObservableObject {
     
     func getUserData() {
         
-        // Setting userdefault
+        
         uid = Auth.auth().currentUser?.uid ?? ""
         phone = Auth.auth().currentUser?.phoneNumber ?? ""
         let userRef = db.collection("User").document(uid)

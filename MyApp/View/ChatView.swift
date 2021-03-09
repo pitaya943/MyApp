@@ -18,11 +18,13 @@ struct ChatView : View {
     @State var msgs = [Msg]()
     @State var txt = ""
     @State var nomsgs = false
+    @State var scrolled = false
+
     let myPic = UserDefaults.standard.value(forKey: "pic")
     
     var body : some View {
         
-        VStack {
+        VStack(spacing: 0) {
             
             if msgs.count == 0 {
                 if self.nomsgs {
@@ -39,49 +41,62 @@ struct ChatView : View {
                 }
             }
             else {
-                ScrollView(.vertical, showsIndicators: false) {
-                    VStack(spacing: 12) {
-                        
-                        ForEach(self.msgs) { i in
+                ScrollViewReader { reader in
+                    ScrollView(.vertical, showsIndicators: false) {
+                        VStack(spacing: 12) {
                             
-                            HStack {
+                            ForEach(self.msgs) { i in
                                 
-                                if i.user == UserDefaults.standard.value(forKey: "uid") as! String {
+                                HStack {
                                     
-                                    Spacer()
-                                    
-                                    Text(i.msg)
-                                        .padding()
-                                        .background(Color.blue)
-                                        .clipShape(ChatBubble(mymsg: true))
-                                        .foregroundColor(.white)
-                                    
-                                    AnimatedImage(url: URL(string: myPic as! String))
-                                        .resizable()
-                                        .renderingMode(.original)
-                                        .frame(width: 55, height: 55)
-                                        .clipShape(Circle())
+                                    if i.user == UserDefaults.standard.value(forKey: "uid") as! String {
+                                        
+                                        Spacer()
+                                        
+                                        Text(i.msg)
+                                            .padding()
+                                            .background(Color.blue)
+                                            .clipShape(ChatBubble(mymsg: true))
+                                            .foregroundColor(.white)
+                                        
+                                        AnimatedImage(url: URL(string: myPic as! String))
+                                            .resizable()
+                                            .renderingMode(.original)
+                                            .frame(width: 55, height: 55)
+                                            .clipShape(Circle())
+                                    }
+                                    else {
+                                        
+                                        AnimatedImage(url: URL(string: pic)!)
+                                            .resizable()
+                                            .renderingMode(.original)
+                                            .frame(width: 55, height: 55)
+                                            .clipShape(Circle())
+                                        
+                                        Text(i.msg)
+                                            .padding()
+                                            .background(Color.green)
+                                            .clipShape(ChatBubble(mymsg: false))
+                                            .foregroundColor(.white)
+                                        
+                                        Spacer()
+                                    }
                                 }
-                                else {
-                                    
-                                    AnimatedImage(url: URL(string: pic)!)
-                                        .resizable()
-                                        .renderingMode(.original)
-                                        .frame(width: 55, height: 55)
-                                        .clipShape(Circle())
-                                    
-                                    Text(i.msg)
-                                        .padding()
-                                        .background(Color.green)
-                                        .clipShape(ChatBubble(mymsg: false))
-                                        .foregroundColor(.white)
-                                    
-                                    Spacer()
+                                .onAppear {
+                                    if i.id == self.msgs.last!.id && !scrolled {
+                                        
+                                        reader.scrollTo(msgs.last!.id, anchor: .bottom)
+                                        scrolled = true
+                                    }
                                 }
                             }
+                            .onChange(of: msgs, perform: { _ in
+                                
+                                reader.scrollTo(msgs.last!.id, anchor: .bottom)
+                            })
                         }
+                        .padding()
                     }
-                    .padding()
                 }
             }
             

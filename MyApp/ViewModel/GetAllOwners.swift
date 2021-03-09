@@ -37,13 +37,13 @@ class getAllOwners : ObservableObject {
                 
                 let id = i.documentID
                 let name = i.get("name") as! String
-                let pic = i.get("pic") as! String
+                let pic = i.get("pic") as? [String] ?? [String]()
                 let phoneNumber = i.get("phoneNumber") as! String
                 let about = i.get("about") as! String
                 
                 if id != UserDefaults.standard.value(forKey: "uid") as! String {
                     
-                    self.owners.append(Owner(id: id, name: name, phoneNumber: phoneNumber, pic: pic, about: about))
+                    self.owners.append(Owner(id: id, name: name, phoneNumber: phoneNumber, pic: pic[0], about: about))
                     
                 }
                 

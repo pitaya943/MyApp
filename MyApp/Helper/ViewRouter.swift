@@ -14,6 +14,7 @@ class ViewRouter: ObservableObject{
 }
 
 enum Page {
+    
     case cover
     case main
     case newMember
